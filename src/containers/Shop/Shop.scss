@@ -1,6 +1,9 @@
+@import '../../utils/utils';
+
 .shop {
-  padding: 2rem 8rem;
+  padding: 2rem 10%;
   &__items-container {
+    margin-top: 1.5rem;
     display: grid;
     grid-gap: 2rem;
     grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));

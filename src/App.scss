@@ -27,6 +27,20 @@ img {
   user-select: none;
 }
 
+input {
+  outline: none;
+  border: none;
+  background-color: inherit;
+}
+
+@keyframes opacity {
+  from {
+    opacity: 0;
+  } to {
+    opacity: 1;
+  }
+}
+
 .page-container {
   @include pagePadding;
   min-height: 65vh;

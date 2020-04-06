@@ -1,0 +1,41 @@
+@import '../../utils/utils';
+
+.search {
+  width: 66%;
+  margin: 0 auto;
+  background-color: $primary-bg-color;
+  padding-left: 1.3rem;
+  height: 48px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @include mobile {
+    width: 100%;
+  }
+  &__input {
+    width: 70%;
+    height: 100%;
+    font-size: 1.3rem;
+  }
+  &__filter {
+    user-select: none;
+    cursor: pointer;
+    position: relative;
+    width: 25%;
+    max-width: 250px;
+    min-width: 100px;
+    height: 100%;
+    padding: 10px 30px;
+    background-image: linear-gradient(0, darken($primary-bg-color, 15%), darken($primary-bg-color, 5%));
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    & > span {
+      font-size: 1.2rem;
+      margin: 0 5px;
+    }
+    &:hover {
+      background-image: linear-gradient(0, darken($primary-bg-color, 12%), darken($primary-bg-color, 5%));
+    }
+  }
+}

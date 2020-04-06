@@ -1,0 +1,34 @@
+@import "../../utils/utils";
+
+.dropdown {
+  &__overlay {
+    cursor: default;
+    position: fixed;
+    top: 0; left: 0; bottom: 0; right: 0;
+    display: block;
+    z-index: -10;
+  }
+  &--active {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    height: fit-content;
+    animation: opacity 0.2s ease-in-out forwards;
+    z-index: 100;
+    span {
+      user-select: none;
+      cursor: pointer;
+      background-color: $primary-bg-color;
+      display: block;
+      height: fit-content;
+      padding: 0.5rem 0 0.5rem 0.5rem;
+      &:last-child {
+        border-radius: 0 0 4px 4px;
+      }
+      &:hover {
+        background-color: darken($primary-bg-color, 5%);
+      }
+    }
+  }
+}
