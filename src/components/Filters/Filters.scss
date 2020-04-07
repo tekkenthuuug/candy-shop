@@ -1,0 +1,20 @@
+@import "../../utils/utils";
+
+.filters {
+  height: 500px;
+  width: 18%;
+  background-color: $primary-bg-color;
+  padding: 0.5rem 1rem;
+  h4 {
+    text-align: center;
+    color: rgba(0, 0, 0, 0.8);
+    font-size: 2rem;
+  }
+  &__section {
+    border-bottom: 2px rgba(0, 0, 0, 0.1) solid;
+    margin-bottom: 1.5rem;
+  }
+  @include mobile {
+    display: none;
+  }
+}

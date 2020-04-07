@@ -22,6 +22,10 @@ body {
   font-family: $primary-type;
 }
 
+html {
+  scroll-behavior: smooth;
+}
+
 img {
   pointer-events: none;
   user-select: none;
@@ -31,6 +35,11 @@ input {
   outline: none;
   border: none;
   background-color: inherit;
+}
+
+button {
+  outline: none;
+  border: none;
 }
 
 @keyframes opacity {

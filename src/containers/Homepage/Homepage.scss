@@ -1,1 +1,24 @@
 @import '../../utils/utils';
+
+.homepage {
+  &__info {
+    padding: 0 20%;
+    h1 {
+      margin-bottom: 1rem;
+    }
+  }
+  &__search-btn {
+    cursor: pointer;
+    height: 100%;
+    width: 30%;
+    font-size: 1.2rem;
+    background-image: linear-gradient(0, darken($primary-bg-color, 15%), darken($primary-bg-color, 5%));
+    &:hover {
+      background-image: linear-gradient(0, darken($primary-bg-color, 12%), darken($primary-bg-color, 5%));
+    }
+  }
+  &__search-wrapper {
+    width: fit-content;
+    margin: auto;
+  }
+}

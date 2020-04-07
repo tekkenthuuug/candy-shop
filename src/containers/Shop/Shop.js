@@ -1,10 +1,13 @@
 import React, { useState, useEffect } from 'react';
 
-import ItemCard from '../../components/ItemCard/ItemCard';
+import { useHistory } from 'react-router-dom';
+
+import Dropdown from '../../components/Dropdown/Dropdown';
 import SearchField from '../../components/SearchField/SearchField';
-import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
 
 import './Shop.scss';
+import ItemCards from '../../components/ItemCards/ItemCards';
+import Filters from '../../components/Filters/Filters';
 
 const mockResponse = [
   {
@@ -87,40 +90,48 @@ const mockResponse = [
   },
 ];
 
-const sortItems = (items, sort) => {
-  return items.sort((a, b) => {
-    return sort.desc ? b[sort.name] - a[sort.name] : a[sort.name] - b[sort.name];
-  });
-};
+const dropdownOptions = [
+  {
+    dropdownName: 'Price high to low',
+    value: {
+      name: 'price',
+      desc: true,
+    },
+  },
+  {
+    dropdownName: 'Price low to high',
+    value: {
+      name: 'price',
+      desc: false,
+    },
+  },
+];
 
 const Shop = () => {
-  const [items, setItems] = useState([]);
+  const history = useHistory();
 
-  const [searchField, setSearchField] = useState('');
+  const [searchField, setSearchField] = useState(history.location.state?.searchField || '');
+
+  const [items, setItems] = useState(mockResponse);
 
   const [sort, setSort] = useState({
     name: 'price',
     desc: true,
   });
 
-  useEffect(() => {
-    setTimeout(() => {
-      setItems(mockResponse);
-    }, 1500);
-  }, []);
-
   return (
     <div className="page-container shop">
-      <SearchField setSearchField={setSearchField} setSort={setSort} sort={sort} />
-      {items.length ? (
-        <div className="shop__items-container">
-          {sortItems([...items], sort).map((item, index) => {
-            return <ItemCard item={item} key={index} />;
-          })}
+      <Filters />
+      <div className="shop__search-section">
+        <div className="shop__search-wrapper">
+          <SearchField
+            setSearchField={setSearchField}
+            searchField={searchField}
+            ComponentRight={<Dropdown options={dropdownOptions} setter={setSort} sort={sort} />}
+          />
         </div>
-      ) : (
-        <LoadingSpinner />
-      )}
+        <ItemCards items={items} sort={sort} />
+      </div>
     </div>
   );
 };

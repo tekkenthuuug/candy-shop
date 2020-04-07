@@ -1,12 +1,25 @@
 @import '../../utils/utils';
 
 .shop {
-  padding: 2rem 10%;
-  &__items-container {
-    margin-top: 1.5rem;
-    display: grid;
-    grid-gap: 2rem;
-    grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
-    justify-items: center;
+  padding: 2rem 8% 2rem 2%;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  @include mobile {
+    justify-content: center;
+    padding: 2rem 8%;
+  }
+  &__search-wrapper {
+    width: 725px;
+    @include mobile {
+      width: 100%;
+      margin: auto;
+    }
+  }
+  &__search-section {
+    width: 80%;
+    @include mobile {
+      width: 100%;
+    }
   }
 }

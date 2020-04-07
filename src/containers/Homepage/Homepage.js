@@ -1,6 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
+
+import { useHistory } from 'react-router-dom';
 
 import Slider from '../../components/Slider/Slider';
+import SearchField from '../../components/SearchField/SearchField';
+
+import { ROUTES } from '../../utils/constants';
 
 import './Homepage.scss';
 
@@ -11,10 +16,32 @@ const sliderImages = [
 ];
 
 const Homepage = () => {
+  const history = useHistory();
+  const [searchField, setSearchField] = useState('');
+
   return (
-    <div className="homepage-container page-container">
+    <div className="homepage page-container">
       <Slider sliderImages={sliderImages}>
-        <h1>We make candies</h1>
+        <div className="homepage__info">
+          <h1>We make candies</h1>
+          <div className="homepage__search-wrapper">
+            <SearchField
+              showDropdown={false}
+              setSearchField={setSearchField}
+              searchField={searchField}
+              ComponentRight={
+                <button
+                  className="homepage__search-btn"
+                  onClick={() => {
+                    history.push(ROUTES.shop, { searchField });
+                  }}
+                >
+                  Search
+                </button>
+              }
+            />
+          </div>
+        </div>
       </Slider>
     </div>
   );

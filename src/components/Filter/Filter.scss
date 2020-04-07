@@ -1,0 +1,28 @@
+@import "../../utils/utils";
+
+.filter {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0.5rem 0;
+  & > span {
+    margin-left: 0.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: rgba(0, 0, 0, 0.7);
+  }
+  &__checkbox {
+    cursor: pointer;
+    border: 3px solid $nav-primary-text-color;
+    border-radius: 0.3rem;
+    width: 26px;
+    height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: $nav-primary-text-color;
+    &--checked {
+      background-color: lighten($nav-primary-text-color, 20%);
+    }
+  }
+}

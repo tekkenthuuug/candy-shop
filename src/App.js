@@ -5,6 +5,7 @@ import Navigation from '../src/components/Navigation/Navigation';
 import Homepage from '../src/containers/Homepage/Homepage';
 import Shop from './containers/Shop/Shop';
 import Footer from '../src/components/Footer/Footer';
+import GoUp from '../src/components/GoUp/GoUp';
 
 import { ROUTES } from '../src/utils/constants';
 
@@ -14,6 +15,7 @@ function App() {
   return (
     <Fragment>
       <Router>
+        <GoUp />
         <Navigation />
         <Route exact path={ROUTES.home} component={Homepage} />
         <Route path={ROUTES.shop} component={Shop} />
