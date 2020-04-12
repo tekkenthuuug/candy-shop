@@ -19,6 +19,10 @@ const Homepage = () => {
   const history = useHistory();
   const [searchField, setSearchField] = useState('');
 
+  const redirectToShop = () => {
+    history.push(`${ROUTES.shop}?q=${searchField}`);
+  }
+
   return (
     <div className="homepage page-container">
       <Slider sliderImages={sliderImages}>
@@ -29,12 +33,11 @@ const Homepage = () => {
               showDropdown={false}
               setSearchField={setSearchField}
               searchField={searchField}
+              onSubmit={redirectToShop}
               ComponentRight={
                 <button
                   className="homepage__search-btn"
-                  onClick={() => {
-                    history.push(ROUTES.shop, { searchField });
-                  }}
+                  onClick={redirectToShop}
                 >
                   Search
                 </button>

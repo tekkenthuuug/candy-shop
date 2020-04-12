@@ -52,7 +52,7 @@ const Navigation = () => {
           </li>
           <li>
             <Link to={ROUTES.cart}>
-              <Cart />
+                <Cart />
             </Link>
           </li>
         </ul>

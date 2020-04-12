@@ -1,6 +1,7 @@
 @import "../../utils/utils";
 
 .filter {
+  cursor: pointer;
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -12,7 +13,6 @@
     color: rgba(0, 0, 0, 0.7);
   }
   &__checkbox {
-    cursor: pointer;
     border: 3px solid $nav-primary-text-color;
     border-radius: 0.3rem;
     width: 26px;

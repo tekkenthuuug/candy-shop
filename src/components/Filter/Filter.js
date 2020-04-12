@@ -14,10 +14,9 @@ const Filter = ({ name, dispatchFilters }) => {
     dispatchFilters({ type: 'ADD_FILTER', payload: name });
   };
   return (
-    <div className="filter">
+    <div className="filter" onClick={handleSetFilter}>
       <div
         className={checked ? 'filter__checkbox filter__checkbox--checked' : 'filter__checkbox'}
-        onClick={handleSetFilter}
       >
         {checked && <span>&#10006;</span>}
       </div>

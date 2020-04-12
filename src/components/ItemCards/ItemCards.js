@@ -4,6 +4,7 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import ItemCard from '../ItemCard/ItemCard';
 
 import './ItemCards.scss';
+import { CartProvider } from '../../context/CartContext';
 
 const sortItems = (items, sort) => {
   return items.sort((a, b) => {
@@ -12,15 +13,19 @@ const sortItems = (items, sort) => {
 };
 
 const ItemCards = ({ items, sort }) => {
+  const sortedItems = sortItems([...items], sort).map((item, index) => {
+    return <ItemCard item={item} key={index} />;
+  })
+
   if (!items.length) {
     return <LoadingSpinner />;
   }
 
   return (
     <div className="items-container">
-      {sortItems([...items], sort).map((item, index) => {
-        return <ItemCard item={item} key={index} />;
-      })}
+      <CartProvider>
+        {sortedItems}
+      </CartProvider>
     </div>
   );
 };
