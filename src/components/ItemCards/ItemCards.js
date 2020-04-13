@@ -23,9 +23,7 @@ const ItemCards = ({ items, sort }) => {
 
   return (
     <div className="items-container">
-      <CartProvider>
-        {sortedItems}
-      </CartProvider>
+      {sortedItems}
     </div>
   );
 };

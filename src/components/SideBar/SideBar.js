@@ -1,6 +1,8 @@
 import React, { useRef } from 'react';
 import { Link } from 'react-router-dom';
 
+import CartCounter from "../CartCounter/CartCounter";
+
 import { ROUTES } from '../../utils/constants';
 
 import './SideBar.scss';
@@ -29,8 +31,11 @@ const SideBar = ({ setSideBar }) => {
         <Link className="sidebar__link" to={ROUTES.shop}>
           Shop
         </Link>
-        <Link className="sidebar__link" to={ROUTES.cart}>
+        <Link className="sidebar__link" to={ROUTES.cart} style={{ position: "relative" }}>
           Cart
+          <div className="sidebar__cart-wrap">
+            <CartCounter />
+          </div>
         </Link>
         <Link className="sidebar__link" to={ROUTES.about}>
           About us

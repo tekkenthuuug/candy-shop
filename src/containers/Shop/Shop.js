@@ -38,12 +38,10 @@ const Shop = () => {
   const [items, setItems] = useState([]);
   
   useEffect(() => {
-    fetch("http://localhost:3000/data/itemsResponse.json").then(r => r.json()).then(data => {
-      setTimeout(() => {
-        if (data.result) {
-          setItems(data.result)
-        }
-      }, 500)
+    fetch("http://localhost:8000/items").then(r => r.json()).then(data => {
+      if (data.result) {
+        setItems(data.result)
+      }
     })
   }, [])
 

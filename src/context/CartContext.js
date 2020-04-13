@@ -7,7 +7,13 @@ const cartReducer = (prevState, action) => {
   const { type, payload } = action;
   switch (type) {
     case "ADD_ITEM":
-      return [...prevState, payload]
+      const prevStateCopy = {...prevState};
+      if (prevState[payload]) {
+        prevStateCopy[payload] += 1;
+      } else {
+        prevStateCopy[payload] = 1;
+      }
+      return prevStateCopy;
     case "REMOVE_ITEM":
       // @TODO
       break;
@@ -17,7 +23,8 @@ const cartReducer = (prevState, action) => {
 }
 
 const CartProvider = ({ children }) => {
-  const [state, dispatch] = useReducer(cartReducer, []);
+  // Initial state of cart is a hashset { itemId : Quantity }
+  const [state, dispatch] = useReducer(cartReducer, {});
   return (
     <CartStateContext.Provider value={state}>
       <CartDispacthContext.Provider value={dispatch}>

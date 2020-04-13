@@ -3,12 +3,11 @@ import { Link, useHistory } from 'react-router-dom';
 
 import SideBar from '../SideBar/SideBar';
 
-import { Cart } from '../../utils/icons';
-
 import logo from '../../img/logo.png';
 import { ROUTES } from '../../utils/constants';
 
 import './Navigation.scss';
+import CartSmall from '../CartSmall/CartSmall';
 
 const Navigation = () => {
   const history = useHistory();
@@ -51,9 +50,7 @@ const Navigation = () => {
             </Link>
           </li>
           <li>
-            <Link to={ROUTES.cart}>
-                <Cart />
-            </Link>
+            <CartSmall />
           </li>
         </ul>
       </div>

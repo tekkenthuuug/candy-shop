@@ -16,6 +16,12 @@ $mobile: 1024px;
   }
 }
 
+@mixin desktop {
+  @media screen and (min-width: #{$mobile}) {
+    @content;
+  }
+}
+
 @mixin pagePadding {
   margin-top: $nav-height;
 }

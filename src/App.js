@@ -10,13 +10,16 @@ import Footer from './components/Footer/Footer';
 import { ROUTES } from './utils/constants';
 
 import './App.scss';
+import { CartProvider } from './context/CartContext';
 
 function App() {
   return (
     <Router>
-      <Navigation />
+      <CartProvider>
+        <Navigation />
+        <Route exact path={ROUTES.shop} component={Shop} />
+      </CartProvider>
       <Route exact path={ROUTES.home} component={Homepage} />
-      <Route exact path={ROUTES.shop} component={Shop} />
       <Route path={ROUTES.about} component={About} />
       <Footer />
     </Router>
