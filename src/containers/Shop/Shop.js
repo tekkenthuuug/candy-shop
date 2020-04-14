@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import useQuery from "../../hooks/useQuery";
@@ -12,6 +12,8 @@ import Filters from '../../components/Filters/Filters';
 import { ROUTES } from '../../utils/constants';
 
 import './Shop.scss';
+import { useEffectWithTypingTimer } from '../../hooks/useEffectWithTimer';
+import fetchJSON from '../../utils/fetchJSON';
 
 const dropdownOptions = [
   {
@@ -34,16 +36,16 @@ const Shop = () => {
   const query = useQuery();
   const history = useHistory();
   const [searchField, setSearchField] = useState(query.get("q") || '');
-
   const [items, setItems] = useState([]);
-  
-  useEffect(() => {
-    fetch("http://localhost:8000/items").then(r => r.json()).then(data => {
+
+  useEffectWithTypingTimer(() => {
+    fetchJSON(`http://localhost:8000/items?search=${searchField}`, { method: "get" })
+    .then(data => {
       if (data.result) {
-        setItems(data.result)
-      }
+        setItems(data.result);
+      };
     })
-  }, [])
+  }, 600, searchField)
 
   const [sort, setSort] = useState({
     name: 'price',
