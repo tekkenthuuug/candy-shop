@@ -39,7 +39,8 @@ input {
 
 button {
   outline: none;
-  border: none;
+  border: none; 
+  cursor: pointer;
 }
 
 @keyframes opacity {

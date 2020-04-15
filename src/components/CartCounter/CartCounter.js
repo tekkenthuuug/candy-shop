@@ -4,7 +4,7 @@ import { useCartState } from '../../context/CartContext';
 
 import "./CartCounter.scss";
 
-const CartCounter = ({ position = "absolute" }) => {
+const CartCounter = () => {
   const cartSize = Object.keys(useCartState()).length;
   if (!cartSize) return null;
   return (
@@ -14,4 +14,4 @@ const CartCounter = ({ position = "absolute" }) => {
   )
 }
 
-export default CartCounter;
+export default React.memo(CartCounter);

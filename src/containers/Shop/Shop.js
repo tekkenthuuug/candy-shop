@@ -9,7 +9,7 @@ import SearchField from '../../components/SearchField/SearchField';
 import ItemCards from '../../components/ItemCards/ItemCards';
 import Filters from '../../components/Filters/Filters';
 
-import { ROUTES } from '../../utils/constants';
+import { ROUTES, API_BASE_URL } from '../../utils/constants';
 
 import './Shop.scss';
 import { useEffectWithTypingTimer } from '../../hooks/useEffectWithTimer';
@@ -39,7 +39,7 @@ const Shop = () => {
   const [items, setItems] = useState([]);
 
   useEffectWithTypingTimer(() => {
-    fetchJSON(`http://localhost:8000/items?search=${searchField}`, { method: "get" })
+    fetchJSON(`${API_BASE_URL}/items?search=${searchField}`, { method: "get" })
     .then(data => {
       if (data.result) {
         setItems(data.result);

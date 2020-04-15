@@ -1,30 +1,71 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useEffect } from "react";
+
+import fetchJSON from "../utils/fetchJSON";
+import { API_BASE_URL } from "../utils/constants";
 
 const CartStateContext = React.createContext();
 const CartDispacthContext = React.createContext();
 
+const addItemToStorageCart = (itemId) => {
+  const newLocalStorageCart = JSON.parse(localStorage.getItem("cart"));
+  if (newLocalStorageCart[itemId]) {
+    newLocalStorageCart[itemId] += 1;
+  } else {
+    newLocalStorageCart[itemId] = 1;
+  }
+  localStorage.setItem("cart", JSON.stringify(newLocalStorageCart));
+} 
+
 const cartReducer = (prevState, action) => {
   const { type, payload } = action;
+
   switch (type) {
     case "ADD_ITEM":
       const prevStateCopy = {...prevState};
-      if (prevState[payload]) {
-        prevStateCopy[payload] += 1;
+      if (prevState[payload.id]) {
+        prevStateCopy[payload.id]["quantity"] += 1;
       } else {
-        prevStateCopy[payload] = 1;
+        prevStateCopy[payload.id] = payload;
+        prevStateCopy[payload.id]["quantity"] = 1;
       }
+      addItemToStorageCart(payload.id);
       return prevStateCopy;
     case "REMOVE_ITEM":
       // @TODO
       break;
+    case "SET_ITEMS":
+      return payload;
+    case "CLEAR_CART":
+      localStorage.setItem("cart", "{}");
+      return {};
     default:
-      throw new Error(`Unahdled action type: ${type}`)
+      throw new Error(`Unhandled action type: ${type}`)
   }
 }
 
 const CartProvider = ({ children }) => {
-  // Initial state of cart is a hashset { itemId : Quantity }
+  // Cart is a hashset { itemId : { ...itemProperties, quantity: number } }
   const [state, dispatch] = useReducer(cartReducer, {});
+
+  useEffect(() => {
+    if (!localStorage.getItem("cart")) {
+      localStorage.setItem("cart", "{}");
+    }
+    const localStorageCart = JSON.parse(localStorage.getItem("cart"));
+    const itemsIds = Object.keys(localStorageCart);
+    if (itemsIds.length) {
+      fetchJSON(`${API_BASE_URL}/items/${itemsIds.join(",")}`, { method: "get" }).then(data => {
+        const items = data.result.reduce((acc, item) => {
+          item.quantity = localStorageCart[item.id];
+          acc[item.id] = item;
+          return acc;
+        }, {})
+        dispatch({ type: "SET_ITEMS", payload: items });
+      })
+    }
+    // eslint-disable-next-line
+  }, [])
+
   return (
     <CartStateContext.Provider value={state}>
       <CartDispacthContext.Provider value={dispatch}>

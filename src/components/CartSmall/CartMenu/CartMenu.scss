@@ -1,0 +1,66 @@
+@import "../../../utils/utils";
+
+.cart-menu {
+  $menu-top-offset: 40px;
+  position: absolute;
+  top: $menu-top-offset;
+  right: -6px;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 0 12px 28px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.1);
+  width: 300px;
+  height: fit-content;
+  z-index: 1;
+  & > div {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  &__cart-empty {
+    text-align: center;
+  }
+  &__zone {
+    z-index: -1;
+    position: absolute;
+    top: calc(-#{$menu-top-offset});
+    left: 0px;
+    width: 100%;
+    height: 50px;
+  }
+  &__items {
+    max-height: 240px;
+    overflow-y: auto;
+    padding-top: 0.2rem;
+    padding-bottom: 0.2rem;
+  }
+  &__buttons {
+    padding: 16px 0px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    & > button {
+      height: 30px;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      font-family: $primary-type;
+    }
+  }
+  &__order-button {
+    background-color: lightskyblue;
+    width: 120px;
+  }
+  &__clear-button {
+    width: 80px;
+    background-color: rosybrown;
+  }
+  &__go-to-shop {
+      background-color: rosybrown;
+      height: 30px;
+      color: white;
+      font-weight: 700;
+      font-size: 1rem;
+      font-family: $primary-type;
+      width: 80%;
+      margin: 8px 0px 16px 30px;
+  }
+}
