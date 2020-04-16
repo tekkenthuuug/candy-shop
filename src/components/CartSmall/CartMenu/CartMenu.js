@@ -22,7 +22,7 @@ const CartMenu = () => {
         cartItems.length ?
         cartItems.map(item => {
           return (
-            <CartItem item={item} key={item.id}/>
+            <CartItem item={item} key={item.id} cartDispatch={cartDispatch}/>
           )
         }) : <h2 className="cart-menu__cart-empty">Your cart is empty</h2>
       }

@@ -18,10 +18,9 @@ const addItemToStorageCart = (itemId) => {
 
 const cartReducer = (prevState, action) => {
   const { type, payload } = action;
-
+  const prevStateCopy = {...prevState};
   switch (type) {
     case "ADD_ITEM":
-      const prevStateCopy = {...prevState};
       if (prevState[payload.id]) {
         prevStateCopy[payload.id]["quantity"] += 1;
       } else {
@@ -33,6 +32,9 @@ const cartReducer = (prevState, action) => {
     case "REMOVE_ITEM":
       // @TODO
       break;
+    case "SET_ITEM_QUANTITY":
+      prevStateCopy[payload["target"]].quantity = payload["newQuantity"];
+      return prevStateCopy;
     case "SET_ITEMS":
       return payload;
     case "CLEAR_CART":
