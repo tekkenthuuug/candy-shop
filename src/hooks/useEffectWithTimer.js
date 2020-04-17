@@ -9,6 +9,9 @@ export const useEffectWithTypingTimer = (callback, timer, dependency) => {
         callback();
       }, timer)
     )
+    return () => {
+      clearTimeout(typingTimer);
+    }
     // eslint-disable-next-line
   }, [dependency])
 }

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import './Dropdown.scss';
+import DropdownList from './DropdownList/DropdownList';
 
 const Dropdown = ({ options, setter, sort }) => {
   const [dropdownOpened, setDropdown] = useState(false);
@@ -10,16 +11,7 @@ const Dropdown = ({ options, setter, sort }) => {
       <span>{sort.name}</span>
       <span style={sort.desc ? undefined : { transform: 'rotate(180deg)' }}>&#9660;</span>
       {dropdownOpened && (
-        <div className="dropdown--active">
-          <div className="dropdown__overlay" onClick={() => setDropdown(false)}></div>
-          {options.map((option, index) => {
-            return (
-              <span key={index} onClick={() => setter(option.value)}>
-                {option.dropdownName}
-              </span>
-            );
-          })}
-        </div>
+        <DropdownList setDropdown={setDropdown} setter={setter} options={options}/>
       )}
     </div>
   );

@@ -1,6 +1,7 @@
 @import '../../utils/utils';
 
 .search {
+  position: relative;
   background-color: $primary-bg-color;
   padding-left: 1.3rem;
   height: 48px;
@@ -12,5 +13,12 @@
     width: 70%;
     height: 100%;
     font-size: 1.3rem;
+  }
+  &__dropdown-wrapper {
+    position: absolute;
+    top: 48px;
+    left: 0px;
+    width: 50%;
+    border-top: 1px solid rgba(128, 128, 128, 0.3);
   }
 }

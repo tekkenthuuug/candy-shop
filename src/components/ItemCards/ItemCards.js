@@ -4,7 +4,6 @@ import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import ItemCard from '../ItemCard/ItemCard';
 
 import './ItemCards.scss';
-import { CartProvider } from '../../context/CartContext';
 
 const sortItems = (items, sort) => {
   return items.sort((a, b) => {

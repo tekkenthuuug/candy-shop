@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import useQuery from "../../hooks/useQuery";
+import { useEffectWithTypingTimer } from '../../hooks/useEffectWithTimer';
 
 import GoUp from '../../components/GoUp/GoUp';
 import Dropdown from '../../components/Dropdown/Dropdown';
@@ -9,13 +10,15 @@ import SearchField from '../../components/SearchField/SearchField';
 import ItemCards from '../../components/ItemCards/ItemCards';
 import Filters from '../../components/Filters/Filters';
 
+import fetchJSON from '../../utils/fetchJSON';
+import localSearchHistory from "../../utils/localSearchHistory";
+
 import { ROUTES, API_BASE_URL } from '../../utils/constants';
 
 import './Shop.scss';
-import { useEffectWithTypingTimer } from '../../hooks/useEffectWithTimer';
-import fetchJSON from '../../utils/fetchJSON';
+import { useEffect } from 'react';
 
-const dropdownOptions = [
+const sortOptions = [
   {
     dropdownName: 'Price high to low',
     value: {
@@ -37,13 +40,23 @@ const Shop = () => {
   const history = useHistory();
   const [searchField, setSearchField] = useState(query.get("q") || '');
   const [items, setItems] = useState([]);
+  const [suggested, setSuggested] = useState(localSearchHistory.get()); 
+  
+  const updateHistory = () => {
+    history.push(`${ROUTES.shop}?q=${searchField}`);
+  }
 
   useEffectWithTypingTimer(() => {
+    updateHistory();
     fetchJSON(`${API_BASE_URL}/items?search=${searchField}`, { method: "get" })
     .then(data => {
       if (data.result) {
         setItems(data.result);
       };
+      if (data.result.length) {
+        localSearchHistory.add(searchField);
+        setSuggested(localSearchHistory.get());
+      }
     })
   }, 600, searchField)
 
@@ -52,9 +65,6 @@ const Shop = () => {
     desc: true,
   });
 
-  const redirectToShop = () => {
-    history.push(`${ROUTES.shop}?q=${searchField}`);
-  }
 
   return (
     <div className="page-container shop">
@@ -65,8 +75,8 @@ const Shop = () => {
           <SearchField
             setSearchField={setSearchField}
             searchField={searchField}
-            onSubmit={redirectToShop}
-            ComponentRight={<Dropdown options={dropdownOptions} setter={setSort} sort={sort} />}
+            options={suggested}
+            ComponentRight={<Dropdown options={sortOptions} setter={setSort} sort={sort} />}
           />
         </div>
         <ItemCards items={items} sort={sort} />
