@@ -38,6 +38,7 @@
     }
   }
   &__add-to-cart {
+    user-select: none;
     cursor: pointer;
     display: inline;
     float: right;

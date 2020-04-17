@@ -10,6 +10,7 @@ const CartItem = ({ item, cartDispatch }) => {
       <div className="cart-item__img" style={{ backgroundImage: `url(${item.img})`}}></div>
       <div className="cart-item__info">
         <h3>{item.name}</h3>
+        <div className="cart-item__close" onClick={() => cartDispatch({ type: "REMOVE_ITEM", payload: item.id })}>&#10006;</div>
         <NumberInput 
           min={1} 
           max={50} 
@@ -19,7 +20,7 @@ const CartItem = ({ item, cartDispatch }) => {
           newQuantity: state
           }})}
       />
-        <p>{(item.price * item.quantity).toFixed(2)}</p>
+        <p>{(item.price * item.quantity).toFixed(2)}$</p>
       </div>
     </div>
   )
