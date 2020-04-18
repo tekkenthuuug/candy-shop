@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
 import useQuery from "../../hooks/useQuery";
-import { useEffectWithTypingTimer } from '../../hooks/useEffectWithTimer';
+import useEffectWithTypingTimer from '../../hooks/useEffectWithTimer';
 
 import GoUp from '../../components/GoUp/GoUp';
-import Dropdown from '../../components/Dropdown/Dropdown';
+import Dropdown from '../../components/DropdownSort/DropdownSort';
 import SearchField from '../../components/SearchField/SearchField';
 import ItemCards from '../../components/ItemCards/ItemCards';
 import Filters from '../../components/Filters/Filters';
@@ -16,7 +16,6 @@ import localSearchHistory from "../../utils/localSearchHistory";
 import { ROUTES, API_BASE_URL } from '../../utils/constants';
 
 import './Shop.scss';
-import { useEffect } from 'react';
 
 const sortOptions = [
   {
@@ -43,7 +42,8 @@ const Shop = () => {
   const [suggested, setSuggested] = useState(localSearchHistory.get()); 
   
   const updateHistory = () => {
-    history.push(`${ROUTES.shop}?q=${searchField}`);
+    const params = searchField ? `?q=${searchField}` : "";
+    history.push(`${ROUTES.shop}${params}`);
   }
 
   useEffectWithTypingTimer(() => {

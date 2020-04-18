@@ -44,7 +44,7 @@
         span {
           height: 2px;
           width: 100%;
-          background-color: black;
+          background-color: $paragraph-color;
           margin: 2.5px;
         }
       }
@@ -56,7 +56,7 @@
     }
     &--selected {
       position: relative;
-      color: darken($nav-primary-text-color, 15%) !important;
+      color: darken($paragraph-color, 15%) !important;
       &:after {
         position: absolute;
         content: '';
@@ -65,7 +65,7 @@
         height: 2px;
         width: 0%;
         animation: underline 0.5s ease-in-out forwards;
-        background-color: rgb(255, 0, 128);
+        background-color: $paragraph-color;
       }
     }
     ul {
@@ -77,12 +77,9 @@
         & > a {
           font-size: 1.6rem;
           text-transform: uppercase;
-          color: $nav-primary-text-color;
+          color: $paragraph-color;
           font-weight: 800;
           transition: color 0.3s ease-in-out;
-          &:hover {
-            color: darken($nav-primary-text-color, 15%);
-          }
         }
       }
     }

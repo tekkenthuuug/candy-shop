@@ -25,7 +25,6 @@ const Filters = () => {
   const [filters, dispatchFilters] = useReducer(filtersReducer, []);
   return (
     <div className="filters">
-      <h4>Filters</h4>
       {FILTERS.map((section, index) => {
         return (
           <div className="filters__section" key={index}>

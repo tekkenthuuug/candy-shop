@@ -3,7 +3,9 @@
 .cart-counter {
   border-radius: 50%;
   position: absolute;
-  background-color: $nav-primary-text-color;
+  @include facebookShadow;
+  color: $paragraph-color;
+  background-color: $primary-bg-color;
   width: 100%;
   height: 100%;
   text-align: center;

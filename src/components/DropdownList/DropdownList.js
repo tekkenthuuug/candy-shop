@@ -1,5 +1,7 @@
 import React from 'react'
 
+import "./DropdownList.scss";
+
 const DropdownList = ({ setDropdown, setter, options }) => {
   return (
     <div className="dropdown--active">

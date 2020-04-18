@@ -23,6 +23,6 @@ const add = (text) => {
   set(localHistory)
 }
 
-module.exports = {
+export default {
   get, set, add
 }

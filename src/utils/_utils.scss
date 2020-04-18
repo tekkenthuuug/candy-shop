@@ -1,6 +1,10 @@
 // Colors
-$primary-bg-color: #eff0f3;
-$nav-primary-text-color: rgb(255, 75, 165);
+$primary-bg-color: #FAEEE7;
+$button-text: #33272A;
+$button-color: #FF8BA7;
+$paragraph-color: #594A4E;
+$search-color: #FFC6C7;
+$filters-border-color: #FFC6C7;
 
 // Types
 $primary-type: 'Nunito', sans-serif;
@@ -24,6 +28,10 @@ $mobile: 1024px;
 
 @mixin pagePadding {
   margin-top: $nav-height;
+}
+
+@mixin facebookShadow {
+  box-shadow: 0 12px 28px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.1);
 }
 
 @keyframes underline {

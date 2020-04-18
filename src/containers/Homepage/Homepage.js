@@ -30,7 +30,6 @@ const Homepage = () => {
           <h1>We make candies</h1>
           <div className="homepage__search-wrapper">
             <SearchField
-              showDropdown={false}
               setSearchField={setSearchField}
               searchField={searchField}
               onSubmit={redirectToShop}

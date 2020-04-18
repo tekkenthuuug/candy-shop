@@ -12,9 +12,10 @@
     height: 100%;
     width: 30%;
     font-size: 1.2rem;
-    background-image: linear-gradient(0, darken($primary-bg-color, 15%), darken($primary-bg-color, 5%));
+    background-color: lighten($button-color, 2%);
+    border-radius: 0 8px 8px 0;
     &:hover {
-      background-image: linear-gradient(0, darken($primary-bg-color, 12%), darken($primary-bg-color, 5%));
+      background-color: lighten($button-color, 4%);
     }
   }
   &__search-wrapper {

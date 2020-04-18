@@ -4,14 +4,11 @@
   height: 500px;
   width: 18%;
   background-color: $primary-bg-color;
-  padding: 0.5rem 1rem;
-  h4 {
-    text-align: center;
-    color: rgba(0, 0, 0, 0.8);
-    font-size: 2rem;
-  }
+  padding: 1rem 1rem;
+  border: 2px $filters-border-color solid;
   &__section {
-    border-bottom: 2px rgba(0, 0, 0, 0.1) solid;
+    border-bottom: 2px $filters-border-color solid;
+    padding-bottom: 0.5rem;
     margin-bottom: 1.5rem;
   }
   @include mobile {

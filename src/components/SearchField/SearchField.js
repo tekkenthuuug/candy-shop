@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import DropdownList from "../Dropdown/DropdownList/DropdownList";
+import DropdownList from "../DropdownList/DropdownList";
 
 import './SearchField.scss';
 

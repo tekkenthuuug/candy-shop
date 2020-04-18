@@ -42,10 +42,10 @@
     cursor: pointer;
     display: inline;
     float: right;
-    background-color: $nav-primary-text-color;
-    color: white;
-    padding: 2px 6px;
-    font-weight: 600;
+    background-color: $button-color;
+    color: $button-text;
+    padding: 2px 8px;
+    font-weight: 700;
     border-radius: 4px;
   }
 }

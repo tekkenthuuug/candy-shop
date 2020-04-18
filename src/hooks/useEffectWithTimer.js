@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react"
 
-export const useEffectWithTypingTimer = (callback, timer, dependency) => {
+const useEffectWithTypingTimer = (callback, timer, dependency) => {
   const [typingTimer, setTypingTimer] = useState();
   useEffect(() => {
     if (typingTimer) clearTimeout(typingTimer)
@@ -15,3 +15,5 @@ export const useEffectWithTypingTimer = (callback, timer, dependency) => {
     // eslint-disable-next-line
   }, [dependency])
 }
+
+export default useEffectWithTypingTimer;
