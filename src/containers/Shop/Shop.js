@@ -5,7 +5,7 @@ import useQuery from "../../hooks/useQuery";
 import useEffectWithTypingTimer from '../../hooks/useEffectWithTimer';
 
 import GoUp from '../../components/GoUp/GoUp';
-import Dropdown from '../../components/DropdownSort/DropdownSort';
+import DropdownSort from '../../components/DropdownSort/DropdownSort';
 import SearchField from '../../components/SearchField/SearchField';
 import ItemCards from '../../components/ItemCards/ItemCards';
 import Filters from '../../components/Filters/Filters';
@@ -76,7 +76,7 @@ const Shop = () => {
             setSearchField={setSearchField}
             searchField={searchField}
             options={suggested}
-            ComponentRight={<Dropdown options={sortOptions} setter={setSort} sort={sort} />}
+            ComponentRight={<DropdownSort options={sortOptions} setter={setSort} sort={sort} />}
           />
         </div>
         <ItemCards items={items} sort={sort} />

@@ -1,4 +1,7 @@
 import React from 'react';
+import { Link } from "react-router-dom";
+
+import { ROUTES } from "../../utils/constants";
 
 import './Footer.scss';
 
@@ -8,6 +11,11 @@ const Footer = () => {
       <div className="footer__section">
         <h5>Contact</h5>
         <ul>
+          <li>
+            <Link to={ROUTES.about}>
+              About us
+            </Link>
+          </li>
           <li>
             <a
               target="_blank"

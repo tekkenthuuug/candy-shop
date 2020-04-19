@@ -5,7 +5,7 @@
   position: absolute;
   top: $menu-top-offset;
   right: -6px;
-  background-color: white;
+  background-color: lighten($primary-bg-color, 1%);
   border-radius: 4px;
   @include facebookShadow;
   width: 300px;
@@ -51,7 +51,7 @@
   }
   &__clear-button {
     width: 80px;
-    background-color: rosybrown;
+    background-color: $button-color;
   }
   &__go-to-shop {
       background-color: rosybrown;

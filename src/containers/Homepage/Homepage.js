@@ -10,9 +10,9 @@ import { ROUTES } from '../../utils/constants';
 import './Homepage.scss';
 
 const sliderImages = [
-  'https://previews.123rf.com/images/beats1/beats11810/beats1181000278/109501372-candies-with-jelly-and-sugar-colorful-array-of-different-childs-sweets-and-treats.jpg',
-  'https://previews.123rf.com/images/beats1/beats11810/beats1181000278/109501372-candies-with-jelly-and-sugar-colorful-array-of-different-childs-sweets-and-treats.jpg',
-  'https://previews.123rf.com/images/beats1/beats11810/beats1181000278/109501372-candies-with-jelly-and-sugar-colorful-array-of-different-childs-sweets-and-treats.jpg',
+  'https://i.insider.com/5bbcf5839fb84c270c2ebc3c?width=1136&format=jpeg',
+  'https://www.simplemost.com/wp-content/uploads/2019/10/halloween-candy.jpeg',
+  'https://ewscripps.brightspotcdn.com/dims4/default/39fa9e4/2147483647/strip/true/crop/1000x563+0+0/resize/1280x720!/quality/90/?url=https%3A%2F%2Fewscripps.brightspotcdn.com%2F8d%2Fcc%2Fbc12c88e4679a97466d123f02c78%2Fsweathearts-valentines-day-candy-pexels-2017.png',
 ];
 
 const Homepage = () => {

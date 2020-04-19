@@ -45,11 +45,6 @@ const Navigation = () => {
             </Link>
           </li>
           <li>
-            <Link to={ROUTES.about} className={isSelected(ROUTES.about)}>
-              About us
-            </Link>
-          </li>
-          <li>
             <CartSmall />
           </li>
         </ul>
