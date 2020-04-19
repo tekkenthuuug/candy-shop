@@ -4,7 +4,7 @@ import DropdownList from '../DropdownList/DropdownList';
 
 import './DropdownSort.scss';
 
-const Dropdown = ({ options, setter, sort }) => {
+const DropdownSort = ({ options, setter, sort }) => {
   const [dropdownOpened, setDropdown] = useState(false);
 
   const buttonClass = dropdownOpened ? "dropdown-sort dropdown-sort--active" : "dropdown-sort";
@@ -20,4 +20,4 @@ const Dropdown = ({ options, setter, sort }) => {
   );
 };
 
-export default Dropdown;
+export default React.memo(DropdownSort);

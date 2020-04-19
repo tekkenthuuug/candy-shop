@@ -40,4 +40,4 @@ const ItemCard = ({ item }) => {
   );
 };
 
-export default ItemCard;
+export default React.memo(ItemCard);

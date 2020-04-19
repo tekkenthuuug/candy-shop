@@ -9,8 +9,9 @@ import Footer from './components/Footer/Footer';
 
 import { ROUTES } from './utils/constants';
 
-import './App.scss';
 import { CartProvider } from './context/CartContext';
+
+import './App.scss';
 
 function App() {
   return (

@@ -1,4 +1,6 @@
-export const API_BASE_URL = "http://localhost:8000"
+const isDevelopment = process.env.NODE_ENV === "development";
+
+export const API_BASE_URL = isDevelopment ? "http://localhost:8000" : "https://whispering-escarpment-12950.herokuapp.com"
 
 export const ROUTES = {
   home: '/',

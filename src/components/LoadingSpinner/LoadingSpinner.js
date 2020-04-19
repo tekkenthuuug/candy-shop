@@ -6,4 +6,4 @@ const LoadingSpinner = () => {
   return <div className="loading-spinner"></div>;
 };
 
-export default LoadingSpinner;
+export default React.memo(LoadingSpinner);

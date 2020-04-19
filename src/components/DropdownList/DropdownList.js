@@ -20,4 +20,4 @@ const DropdownList = ({ setDropdown, setter, options }) => {
   )
 }
 
-export default DropdownList
+export default React.memo(DropdownList)

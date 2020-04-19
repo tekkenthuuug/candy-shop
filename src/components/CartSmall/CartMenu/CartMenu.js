@@ -42,4 +42,4 @@ const CartMenu = () => {
   )
 }
 
-export default CartMenu;
+export default React.memo(CartMenu);

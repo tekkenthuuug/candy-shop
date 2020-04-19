@@ -22,4 +22,4 @@ const CartSmall = () => {
   )
 }
 
-export default CartSmall;
+export default React.memo(CartSmall);

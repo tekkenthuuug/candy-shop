@@ -34,4 +34,4 @@ const GoUp = () => {
   );
 };
 
-export default GoUp;
+export default React.memo(GoUp);
