@@ -3,8 +3,9 @@
 .filters {
   height: 500px;
   width: 18%;
+  min-width: 170px;
   background-color: $primary-bg-color;
-  padding: 1rem 1rem;
+  padding: 1rem 1.2rem;
   border: 2px $filters-border-color solid;
   &__section {
     border-bottom: 2px $filters-border-color solid;

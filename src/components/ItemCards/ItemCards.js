@@ -1,6 +1,5 @@
 import React from 'react';
 
-import LoadingSpinner from '../LoadingSpinner/LoadingSpinner';
 import ItemCard from '../ItemCard/ItemCard';
 
 import './ItemCards.scss';
@@ -17,7 +16,7 @@ const ItemCards = ({ items, sort }) => {
   })
 
   if (!items.length) {
-    return <LoadingSpinner />;
+    return <h1 className="no-items-found">No items found :(</h1>;
   }
 
   return (

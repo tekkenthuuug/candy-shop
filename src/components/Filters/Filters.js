@@ -24,7 +24,6 @@ const filtersReducer = (state, action) => {
 
 const Filters = () => {
   const [filters, dispatchFilters] = useReducer(filtersReducer, []);
-
   return (
     <div className="filters">
       {FILTERS.map((section, index) => {

@@ -1,7 +1,18 @@
+@import "../../utils/utils";
+
 .items-container {
+  width: 100%;
+  height: 100%;
   margin-top: 1.5rem;
   display: grid;
   grid-gap: 2rem;
   grid-template-columns: repeat(auto-fill, minmax(245px, 1fr));
   justify-items: center;
+}
+
+.no-items-found {
+  margin: 60px auto 0 auto;
+  @include mobile {
+    margin: auto;
+  }
 }

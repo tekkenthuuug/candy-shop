@@ -1,14 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 
 import DropdownList from "../DropdownList/DropdownList";
+
+import useClickOutside from "../../hooks/useClickOutside";
 
 import './SearchField.scss';
 
 const SearchField = ({ setSearchField, onSubmit, searchField, ComponentRight, options }) => {
   const [dropdownOpened, setDropdown] = useState(false);
 
+  const searchRef = useRef(null)
+
+  useClickOutside(searchRef, () => {
+    setDropdown(false);
+  })
+
   return (
-    <div className="search">
+    <div className="search" ref={searchRef}>
       <input
         type="text"
         className="search__input"

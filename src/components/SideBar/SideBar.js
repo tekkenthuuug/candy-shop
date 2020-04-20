@@ -1,15 +1,19 @@
 import React, { useRef } from 'react';
-import { Link } from 'react-router-dom';
 
 import CartCounter from "../CartCounter/CartCounter";
+
+import useClickOutside from "../../hooks/useClickOutside";
 
 import { ROUTES } from '../../utils/constants';
 
 import './SideBar.scss';
+import { useHistory } from 'react-router-dom';
 
 const SideBar = ({ setSideBar }) => {
   const sidebarRef = useRef(null);
   const drawerRef = useRef(null);
+
+  const history = useHistory();
 
   const handleCloseSideBar = () => {
     sidebarRef.current.classList.add('sidebar--closing');
@@ -19,27 +23,43 @@ const SideBar = ({ setSideBar }) => {
       setSideBar(false);
     }, 300);
   };
+
+  useClickOutside(sidebarRef, () => {
+    handleCloseSideBar();
+  })
+
+  const handleRedirect = (path) => {
+    history.push(path);
+    handleCloseSideBar();
+  }
+
   return (
-    <div className="drawer" onClick={handleCloseSideBar} ref={drawerRef}>
+    <div className="drawer" ref={drawerRef}>
       <div className="sidebar" ref={sidebarRef}>
         <span className="sidebar__close" onClick={handleCloseSideBar}>
-          &#10006;
+          {/*
+          &#10006 - HTML entity
+          &#xFE0E - Modificator for changing color in Safari
+          */}
+          &#10006;&#xFE0E;
         </span>
-        <Link className="sidebar__link" to={ROUTES.home}>
+        <div className="sidebar__link" onClick={() => handleRedirect(ROUTES.home)}>
           Home
-        </Link>
-        <Link className="sidebar__link" to={ROUTES.shop}>
+        </div>
+        <div className="sidebar__link" onClick={() => handleRedirect(ROUTES.shop)}>
           Shop
-        </Link>
-        <Link className="sidebar__link" to={ROUTES.cart} style={{ position: "relative" }}>
-          Cart
-          <div className="sidebar__cart-wrap">
-            <CartCounter />
-          </div>
-        </Link>
-        <Link className="sidebar__link" to={ROUTES.about}>
+        </div>
+        <div className="sidebar__link sidebar__cart-wrap" onClick={() => handleRedirect(ROUTES.cart)}>
+            <span>
+               Cart
+            </span>
+            <div className="sidebar__counter-wrap">
+              <CartCounter position="inline-block"/>
+            </div>
+        </div>
+        <div className="sidebar__link" onClick={() => handleRedirect(ROUTES.about)}>
           About us
-        </Link>
+        </div>
       </div>
     </div>
   );

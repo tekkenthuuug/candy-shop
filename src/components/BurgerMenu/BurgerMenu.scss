@@ -1,0 +1,24 @@
+@import "../../utils/utils";
+
+.burger-menu {
+  display: none;
+  @include mobile {
+    cursor: pointer;
+    height: 21px;
+    width: 24px;
+    display: block;
+    &__tilts {
+      margin: auto;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      span {
+        height: 2px;
+        width: 100%;
+        background-color: $paragraph-color;
+        margin: 2.5px;
+      }
+    }
+  }
+}

@@ -2,9 +2,18 @@
 
 .homepage {
   &__info {
-    padding: 0 20%;
+    background-color: rgba(26, 26, 26, 0.6);
+    padding: 0 10% 100px 10%;
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
     h1 {
-      margin-bottom: 1rem;
+      margin-bottom: 0.8rem;
+      line-height: 2.6rem;
+      font-size: 3rem;
+      text-align: center;
     }
   }
   &__search-btn {
@@ -19,8 +28,9 @@
     }
   }
   &__search-wrapper {
-    width: 500px;
-    margin: auto;
+    margin-top: 40px;
+    max-width: 500px;
+    width: 100%;
     color: black;
   }
 }

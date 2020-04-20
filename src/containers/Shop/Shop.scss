@@ -1,10 +1,9 @@
 @import '../../utils/utils';
 
 .shop {
-  padding: 2rem 8% 2rem 2%;
+  padding: 1.5rem 4%;
   display: flex;
   justify-content: space-between;
-  align-items: flex-start;
   background-color: $primary-bg-color;
   @include mobile {
     justify-content: center;
@@ -12,13 +11,18 @@
   }
   &__search-wrapper {
     width: 725px;
+    margin: 0 auto;
     @include mobile {
       width: 100%;
-      margin: auto;
+      margin: 0 auto;
     }
   }
   &__search-section {
     width: 80%;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    flex-direction: column;
     @include mobile {
       width: 100%;
     }

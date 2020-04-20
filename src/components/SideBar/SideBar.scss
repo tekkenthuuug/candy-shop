@@ -1,7 +1,6 @@
 @import "../../utils/utils";
 
 .drawer {
-  cursor: pointer;
   position: fixed;
   top: 0;
   left: 0;
@@ -12,30 +11,31 @@
   &--closing {
     animation: drawerFadeOut 0.3s ease-in-out forwards;
   }
-  z-index: 100;
 }
 
 .sidebar {
-  cursor: default;
   position: absolute;
   top: 0;
   background-color: rgb(83, 42, 64);
   height: 100vh;
   width: 300px;
-  margin-left: 100%;
   animation: sideSlideRight 0.3s ease-in-out forwards;
   padding: 2rem;
   &--closing {
     animation: sideHide 0.3s ease-in-out forwards;
   }
   &__cart-wrap {
-    position: absolute;
-    height: 20px;
+    display: flex !important;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  &__counter-wrap {
     width: 20px;
-    top: 6px;
-    left: 80px;
+    height: 20px;
+    margin-left: 10px;
   }
   &__link {
+    cursor: pointer;
     display: block;
     margin: 1rem 0;
     padding-bottom: 0.5rem;
@@ -47,7 +47,7 @@
   }
   &__close {
     cursor: pointer;
-    color: #fff;
+    color: white;
     font-size: 1.5rem;
   }
 }

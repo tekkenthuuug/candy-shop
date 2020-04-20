@@ -9,6 +9,8 @@ import DropdownSort from '../../components/DropdownSort/DropdownSort';
 import SearchField from '../../components/SearchField/SearchField';
 import ItemCards from '../../components/ItemCards/ItemCards';
 import Filters from '../../components/Filters/Filters';
+import LoadingSpinner from '../../components/LoadingSpinner/LoadingSpinner';
+
 
 import fetchJSON from '../../utils/fetchJSON';
 import localSearchHistory from "../../utils/localSearchHistory";
@@ -37,6 +39,7 @@ const sortOptions = [
 const Shop = () => {
   const query = useQuery();
   const history = useHistory();
+  const [isRequesting, setRequesting] = useState(true);
   const [searchField, setSearchField] = useState(query.get("q") || '');
   const [items, setItems] = useState([]);
   const [suggested, setSuggested] = useState(localSearchHistory.get()); 
@@ -47,16 +50,16 @@ const Shop = () => {
   }
 
   useEffectWithTypingTimer(() => {
+    setRequesting(true);
     updateHistory();
     fetchJSON(`${API_BASE_URL}/items?search=${searchField}`, { method: "get" })
     .then(data => {
+      setRequesting(false);
       if (data.result) {
         setItems(data.result);
-      };
-      if (data.result.length) {
         localSearchHistory.add(searchField);
         setSuggested(localSearchHistory.get());
-      }
+      };
     })
   }, 600, searchField)
 
@@ -64,7 +67,6 @@ const Shop = () => {
     name: 'price',
     desc: true,
   });
-
 
   return (
     <div className="page-container shop">
@@ -79,7 +81,11 @@ const Shop = () => {
             ComponentRight={<DropdownSort options={sortOptions} setter={setSort} sort={sort} />}
           />
         </div>
-        <ItemCards items={items} sort={sort} />
+        {
+          isRequesting ? 
+            <LoadingSpinner /> :
+            <ItemCards items={items} sort={sort} />
+        }
       </div>
     </div>
   );

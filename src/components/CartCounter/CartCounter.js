@@ -4,13 +4,13 @@ import { useCartState } from '../../context/CartContext';
 
 import "./CartCounter.scss";
 
-const CartCounter = () => {
+const CartCounter = ({ position = "absolute" }) => {
   const cartSize = Object.keys(useCartState()).length;
   if (!cartSize) return null;
   return (
-    <span className="cart-counter">
+    <div className="cart-counter" style={{ position: "block" }}>
       {cartSize}
-    </span>
+    </div>
   )
 }
 

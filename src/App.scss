@@ -54,4 +54,7 @@ button {
 .page-container {
   @include pagePadding;
   min-height: 65vh;
+  @include mobile {
+    min-height: 85vh;
+  }
 }

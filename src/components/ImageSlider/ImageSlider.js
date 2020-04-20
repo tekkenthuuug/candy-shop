@@ -1,6 +1,8 @@
 import React, { useState, useEffect, createRef, useRef } from 'react';
 
-import './Slider.scss';
+import LazyImage from "../LazyImage/LazyImage";
+
+import './ImageSlider.scss';
 
 const Slider = ({ sliderImages, children }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -43,14 +45,16 @@ const Slider = ({ sliderImages, children }) => {
         </div>
       </div>
       <div className="slider__slide-container" ref={containerRef}>
-        {sliderImages.map((imgURL, index) => {
+        {sliderImages.map((img, index) => {
           return (
-            <div
-              key={index}
-              ref={refs.current[index]}
-              className="slider__slide"
-              style={{ backgroundImage: `url("${imgURL}")` }}
-            ></div>
+              <LazyImage
+                alt="background slide"
+                style={{ objectFit: "cover", width: "100%", height: "100%" }}
+                key={index}
+                src={img.min}
+                fullSrc={img.full}
+                refc={refs.current[index]}
+              />
           );
         })}
       </div>

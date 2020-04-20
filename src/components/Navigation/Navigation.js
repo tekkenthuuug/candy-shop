@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
-import SideBar from '../SideBar/SideBar';
+import BurgerMenu from "../BurgerMenu/BurgerMenu";
 
 import logo from '../../img/logo.png';
 import { ROUTES } from '../../utils/constants';
@@ -13,8 +13,6 @@ const Navigation = () => {
   const history = useHistory();
   const { pathname } = history.location;
 
-  const [sideBarOpened, setSideBar] = useState(false);
-
   const isSelected = (route) => {
     return route === pathname ? 'nav__links-container--selected' : undefined;
   };
@@ -24,14 +22,7 @@ const Navigation = () => {
       <Link to={ROUTES.home} className="nav__logo">
         <img src={logo} alt="Sugar daddies logo" />
       </Link>
-      {sideBarOpened && <SideBar setSideBar={setSideBar} />}
-      <div className="nav__burger-menu" onClick={() => setSideBar(true)}>
-        <div className="tilts">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
+      <BurgerMenu />
       <div className="nav__links-container">
         <ul>
           <li>
