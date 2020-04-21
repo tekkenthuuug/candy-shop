@@ -15,7 +15,6 @@
     color: $primary-bg-color;
   }
   &__slide-container {
-    background-color: #1c1c1c;
     width: 100%;
     height: 100%;
     overflow: hidden;
@@ -23,6 +22,9 @@
     display: grid;
     grid-template-columns: repeat(999, 100%);
     grid-template-rows: 1fr;
+    &--resizing {
+      scroll-behavior: auto;
+    }
   }
   $number-of-controls: 3;
   $control-size: 18px;

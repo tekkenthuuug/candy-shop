@@ -4,28 +4,43 @@ import LazyImage from "../LazyImage/LazyImage";
 
 import './ImageSlider.scss';
 
-const Slider = ({ sliderImages, children }) => {
+const ImageSlider = ({ sliderImages, children }) => {
   const [currentSlide, setCurrentSlide] = useState(0);
 
   const scrollToRef = (ref, parent) => {
     parent.current.scrollLeft = ref.current.offsetLeft;
   };
 
-  const refs = useRef(sliderImages.map(() => createRef()));
+  const handleResize = (ref, parent) => {
+    parent.current.classList.add("slider__slide-container--resizing")
+    scrollToRef(ref, parent);
+    parent.current.classList.remove("slider__slide-container--resizing")
+  };
+
+  const imgRefs = useRef(sliderImages.map(() => createRef()));
   const containerRef = useRef(null);
 
   useEffect(() => {
-    scrollToRef(refs.current[currentSlide], containerRef);
+    // Saving ref for cleanup function
+    const savedRefs = imgRefs;
+    const savedContainerRef = containerRef;
+    
+    window.addEventListener("resize", () => handleResize(savedRefs.current[currentSlide], savedContainerRef))
+
+    scrollToRef(imgRefs.current[currentSlide], containerRef);
     const timeout = setTimeout(() => {
-      if (currentSlide < refs.current.length - 1) {
+      if (currentSlide < imgRefs.current.length - 1) {
         setCurrentSlide(currentSlide + 1);
       } else {
         setCurrentSlide(0);
       }
     }, 10000);
+
     return () => {
       clearTimeout(timeout);
+      window.removeEventListener("resize", () => handleResize(savedRefs.current[currentSlide], containerRef))
     };
+    // eslint-disable-next-line
   }, [currentSlide]);
 
   return (
@@ -53,7 +68,7 @@ const Slider = ({ sliderImages, children }) => {
                 key={index}
                 src={img.min}
                 fullSrc={img.full}
-                refc={refs.current[index]}
+                refc={imgRefs.current[index]}
               />
           );
         })}
@@ -62,4 +77,4 @@ const Slider = ({ sliderImages, children }) => {
   );
 };
 
-export default React.memo(Slider);
+export default React.memo(ImageSlider);

@@ -17,9 +17,6 @@
   }
   &__logo {
     height: 70%;
-    @include mobile {
-      height: 50%;
-    }
     img {
       height: 100%;
       width: auto;
