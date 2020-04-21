@@ -7,7 +7,7 @@ const checkState = (initialState, min, max) => {
 }
 
 
-const NumberInput = ({ initialState, setter, min, max }) => {
+const NumberInput = ({ initialState, setter, min = 1, max = 50 }) => {
   const stateReducer = (prevState, { type, payload }) => {
     switch (type) {
       case "INCREMENT":
@@ -15,20 +15,9 @@ const NumberInput = ({ initialState, setter, min, max }) => {
       case "DECREMENT":
         return checkState(prevState - 1, min, max);
       case "SET":
-        if (!payload) {
-          return;
-        }
-        return Number(payload);
+        return checkState(Number(payload), min, max);
       default: 
         return prevState;
-    }
-  }
-
-  const handleIncorrectField = (e) => {
-    const numberVal = Number(e.target.value);
-    if (numberVal < 1) {
-      e.target.value = 1;
-      dispatch({ type: "SET", payload: 1 })
     }
   }
 
@@ -50,7 +39,6 @@ const NumberInput = ({ initialState, setter, min, max }) => {
         type="number" 
         value={state || ""}
         onChange={(e) => dispatch({ type: "SET", payload: e.target.value })}
-        onBlur={handleIncorrectField}
       />
       <span onClick={() => dispatch({ type: "INCREMENT" })}>
         &#9654; 

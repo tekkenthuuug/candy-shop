@@ -15,6 +15,7 @@
     width: 20px;
     text-align: center;
     border-radius: 4px;
+    border: 1px $button-color solid;
     // Removing default input[type=number] controls
     /* Chrome, Safari, Edge, Opera */
     &::-webkit-outer-spin-button,

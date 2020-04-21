@@ -12,12 +12,10 @@ const CartItem = ({ item, cartDispatch }) => {
         <h3>{item.name}</h3>
         <div className="cart-item__close" onClick={() => cartDispatch({ type: "REMOVE_ITEM", payload: item.id })}>&#10006;</div>
         <NumberInput 
-          min={1} 
-          max={50} 
           initialState={item.quantity} 
           setter={(state) => cartDispatch({ type: "SET_ITEM_QUANTITY", payload: {
-          target: item.id,
-          newQuantity: state
+            target: item.id,
+            newQuantity: state
           }})}
       />
         <p>{(item.price * item.quantity).toFixed(2)}$</p>
