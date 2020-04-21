@@ -10,23 +10,18 @@ const ImageSlider = ({ sliderImages, children }) => {
   const scrollToRef = (ref, parent) => {
     parent.current.scrollLeft = ref.current.offsetLeft;
   };
-
-  const handleResize = (ref, parent) => {
-    parent.current.classList.add("slider__slide-container--resizing")
-    scrollToRef(ref, parent);
-    parent.current.classList.remove("slider__slide-container--resizing")
-  };
-
+  
   const imgRefs = useRef(sliderImages.map(() => createRef()));
   const containerRef = useRef(null);
 
-  useEffect(() => {
-    // Saving ref for cleanup function
-    const savedRefs = imgRefs;
-    const savedContainerRef = containerRef;
-    
-    window.addEventListener("resize", () => handleResize(savedRefs.current[currentSlide], savedContainerRef))
+  const handleResize = () => {
+    containerRef.current.classList.add("slider__slide-container--resizing")
+    scrollToRef(imgRefs.current[currentSlide], containerRef);
+    containerRef.current.classList.remove("slider__slide-container--resizing")
+  };
 
+  useEffect(() => {
+    window.addEventListener("resize", handleResize)
     scrollToRef(imgRefs.current[currentSlide], containerRef);
     const timeout = setTimeout(() => {
       if (currentSlide < imgRefs.current.length - 1) {
@@ -38,7 +33,7 @@ const ImageSlider = ({ sliderImages, children }) => {
 
     return () => {
       clearTimeout(timeout);
-      window.removeEventListener("resize", () => handleResize(savedRefs.current[currentSlide], containerRef))
+      window.removeEventListener("resize", handleResize)
     };
     // eslint-disable-next-line
   }, [currentSlide]);
