@@ -16,7 +16,7 @@ const CartSmall = () => {
         <CartCounter />
       </div>
       {
-        showMenu && <CartMenu />
+        showMenu && <CartMenu setShowMenu={setShowMenu}/>
       }
     </div>
   )

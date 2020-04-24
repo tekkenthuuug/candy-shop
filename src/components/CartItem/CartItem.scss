@@ -24,11 +24,30 @@
     width: 70%;
     padding-top: 2px;
     margin-left: 16px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
     h3 {
       font-size: 1.1rem;
+      max-width: 100%;
       text-overflow: ellipsis;
       white-space: nowrap;
       overflow: hidden;
+    }
+    p {
+      color: darken(#ff647e, 10%);
+      font-weight: 700;
+    }
+  }
+  &__popular-quantities {
+    display: flex;
+    background-color: lighten(#ff647e, 20%);
+    line-height: 16px;
+    border-radius: 4px;
+    & > div {
+      cursor: pointer;
+      margin: 2px 4px;
     }
   }
 }

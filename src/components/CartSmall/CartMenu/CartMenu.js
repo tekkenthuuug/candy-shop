@@ -1,7 +1,7 @@
 import React from 'react'
 import { useHistory } from 'react-router-dom';
 
-import CartItem from '../CartItem/CartItem';
+import CartItem from '../../CartItem/CartItem';
 
 import { useCartState, useCartDispatch } from '../../../context/CartContext';
 
@@ -9,11 +9,17 @@ import { ROUTES } from '../../../utils/constants';
 
 import "./CartMenu.scss";
 
-const CartMenu = () => {
+const CartMenu = ({ setShowMenu }) => {
   const history = useHistory();
   const cartState = useCartState();
   const cartDispatch = useCartDispatch();
   const cartItems = Object.values(cartState)
+
+  const handleClearCart = () => {
+    cartDispatch({ type: "CLEAR_CART" });
+    setShowMenu(false);
+  }
+
   return (
     <div className="cart-menu">
       <div className="cart-menu__zone"></div>
@@ -30,10 +36,10 @@ const CartMenu = () => {
       {
         cartItems.length ?
       <div className="cart-menu__buttons">
-        <button className="cart-menu__order-button">
+        <button className="cart-menu__order-button" onClick={() => history.push(ROUTES.cart)}>
           Proceed order
         </button>
-        <button className="cart-menu__clear-button" onClick={() => cartDispatch({ type: "CLEAR_CART" })}>
+        <button className="cart-menu__clear-button" onClick={handleClearCart}>
           Clear
         </button>
       </div> : <button className="cart-menu__go-to-shop" onClick={() => history.push(ROUTES.shop)}>Go to shop</button>

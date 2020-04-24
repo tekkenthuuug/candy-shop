@@ -2,7 +2,6 @@ import React, { useReducer } from 'react';
 
 import Filter from '../Filter/Filter';
 
-
 import { FILTERS } from '../../utils/constants';
 
 import './Filters.scss';
@@ -11,8 +10,7 @@ const filtersReducer = (state, action) => {
   const newFilters = [...state];
   switch (action.type) {
     case 'ADD_FILTER':
-      newFilters.push(action.payload);
-      return newFilters;
+      return [...state, action.payload];
     case 'REMOVE_FILTER':
       const index = newFilters.indexOf(action.payload);
       newFilters.splice(index, 1);

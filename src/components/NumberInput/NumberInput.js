@@ -30,6 +30,11 @@ const NumberInput = ({ initialState, setter, min = 1, max = 50 }) => {
     // eslint-disable-next-line
   }, [state])
 
+  useEffect(() => {
+    dispatch({ type: "SET", payload: initialState })
+    // eslint-disable-next-line
+  }, [initialState])
+
   return (
     <div className="number-input">
       <span onClick={() => dispatch({ type: "DECREMENT" })}>
@@ -37,7 +42,7 @@ const NumberInput = ({ initialState, setter, min = 1, max = 50 }) => {
       </span>
       <input 
         type="number" 
-        value={state || ""}
+        value={state || initialState}
         onChange={(e) => dispatch({ type: "SET", payload: e.target.value })}
       />
       <span onClick={() => dispatch({ type: "INCREMENT" })}>
@@ -47,4 +52,4 @@ const NumberInput = ({ initialState, setter, min = 1, max = 50 }) => {
   )
 }
 
-export default NumberInput
+export default React.memo(NumberInput);

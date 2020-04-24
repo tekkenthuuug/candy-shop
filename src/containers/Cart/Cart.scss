@@ -1,0 +1,55 @@
+@import "../../utils/utils";
+
+.cart-page {
+  background-color: $primary-bg-color;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 2rem 0;
+  @include mobile {
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+  }
+  &__items {
+    width: 600px;
+    margin-top: -.8rem;
+    & > div {
+      height: 120px;
+      padding: 0.8rem;
+    }
+    @include mobile {
+      width: 90%;
+    }
+  }
+  &__side {
+    border-left: 2px rgba(#33272A, 0.5) solid;
+    margin-left: 40px;
+    padding-left: 20px;
+    h4 {
+      font-size: 2.2rem;
+    }
+    p {
+      color: #ff647e;
+      font-size: 1.5rem;
+      font-weight: 700;
+    }
+    button {
+      display: block;
+      margin: 1rem 0;
+      background-color: $proceed-button-color;
+      color: white;
+      height: 30px;
+      font-weight: 700;
+      font-size: 1rem;
+      font-family: $primary-type;
+      width: 100px;
+    }
+    @include mobile {
+      padding-left: 0;
+      margin-left: 0;
+      margin-top: 1rem;
+      border: none;
+    }
+  }
+}

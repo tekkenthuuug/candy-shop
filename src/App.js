@@ -4,7 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import Navigation from './components/Navigation/Navigation';
 import Homepage from './containers/Homepage/Homepage';
 import Shop from './containers/Shop/Shop';
-import About from './containers/About/About';
+import Cart from "./containers/Cart/Cart";
 import Footer from './components/Footer/Footer';
 
 import { ROUTES } from './utils/constants';
@@ -19,9 +19,9 @@ function App() {
       <CartProvider>
         <Navigation />
         <Route exact path={ROUTES.shop} component={Shop} />
+        <Route path={ROUTES.cart} component={Cart}/>
       </CartProvider>
       <Route exact path={ROUTES.home} component={Homepage} />
-      <Route path={ROUTES.about} component={About} />
       <Footer />
     </Router>
   );

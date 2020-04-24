@@ -5,7 +5,6 @@ export const API_BASE_URL = isDevelopment ? "http://localhost:8000" : "https://w
 export const ROUTES = {
   home: '/',
   shop: '/shop',
-  about: '/about',
   cart: '/cart',
   item: '/shop/item',
 };
