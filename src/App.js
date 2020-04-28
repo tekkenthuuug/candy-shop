@@ -1,17 +1,18 @@
-import React from 'react';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import React from "react";
+import { BrowserRouter as Router, Route } from "react-router-dom";
 
-import Navigation from './components/Navigation/Navigation';
-import Homepage from './containers/Homepage/Homepage';
-import Shop from './containers/Shop/Shop';
+import Navigation from "./components/Navigation/Navigation";
+import Homepage from "./containers/Homepage/Homepage";
+import Shop from "./containers/Shop/Shop";
 import Cart from "./containers/Cart/Cart";
-import Footer from './components/Footer/Footer';
+import ItemPage from "./containers/ItemPage/ItemPage";
+import Footer from "./components/Footer/Footer";
 
-import { ROUTES } from './utils/constants';
+import { ROUTES } from "./utils/constants";
 
-import { CartProvider } from './context/CartContext';
+import { CartProvider } from "./context/CartContext";
 
-import './App.scss';
+import "./App.scss";
 
 function App() {
   return (
@@ -19,7 +20,8 @@ function App() {
       <CartProvider>
         <Navigation />
         <Route exact path={ROUTES.shop} component={Shop} />
-        <Route path={ROUTES.cart} component={Cart}/>
+        <Route exact path={`${ROUTES.item}/:id`} component={ItemPage} />
+        <Route path={ROUTES.cart} component={Cart} />
       </CartProvider>
       <Route exact path={ROUTES.home} component={Homepage} />
       <Footer />

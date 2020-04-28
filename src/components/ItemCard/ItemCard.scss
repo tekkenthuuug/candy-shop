@@ -36,16 +36,8 @@
       display: inline;
     }
   }
-  &__add-to-cart {
-    user-select: none;
-    cursor: pointer;
-    display: inline;
+  &__add-wrapper {
     float: right;
-    background-color: $button-color;
-    color: $button-text;
-    padding: 2px 8px;
-    font-weight: 700;
-    border-radius: 4px;
   }
 }
 

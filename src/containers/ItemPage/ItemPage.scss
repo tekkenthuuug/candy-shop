@@ -1,0 +1,54 @@
+@import "../../utils/utils";
+
+.item-page {
+  padding: 1rem 20%;
+  background-color: $primary-bg-color;
+  @include mobile {
+    padding: 1rem 0;
+  }
+  &__container {
+    box-shadow: 2px 2px 12px rgba(0,0,0, 0.2);
+    background-color: darken($primary-bg-color, 2%);
+    padding: 2rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    @include mobile {
+      flex-direction: column;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
+  &__img {
+    height: 300px;
+    width: 300px;
+    overflow: hidden;
+    img {
+      object-fit: cover;
+      width: 100%;
+      height: 100%;
+    }
+  }
+  &__info {
+    margin-left: 5%;
+    @include mobile {
+      margin-left: 0;
+      padding: 1rem;
+    }
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  &__id {
+    color: grey;
+  }
+  &__description {
+    font-size: 1.1rem;
+    margin-top: 20px;
+  }
+  &__add-wrapper {
+    float: left;
+    height: 40px;
+    margin-top: 10px;
+  }
+}
