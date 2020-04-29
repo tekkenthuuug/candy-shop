@@ -22,6 +22,34 @@
       width: 90%;
     }
   }
+  &__email {
+    margin-top: 1rem;
+    & > * {
+      display: block;
+    }
+    label {
+      font-size: 1.2rem;
+      font-weight: 600;
+      &::after {
+        content: "*";
+        margin-left: 4px;
+        color: red;
+      }
+    }
+    > p {
+      margin-top: 2px;
+      color: rgb(197, 0, 0);
+    }
+    > div {
+      margin-top: 0.5rem;
+      background-color: $search-color;
+      height: 30px;
+      padding-left: 10px;
+      display: flex;
+      justify-content: flex-start;
+      align-items: center;
+    }
+  }
   &__side {
     border-left: 2px rgba(#33272A, 0.5) solid;
     margin-left: 40px;
@@ -29,7 +57,7 @@
     h4 {
       font-size: 2.2rem;
     }
-    p {
+    > p {
       color: #ff647e;
       font-size: 1.5rem;
       font-weight: 700;
@@ -44,6 +72,10 @@
       font-size: 1rem;
       font-family: $primary-type;
       width: 100px;
+      &:disabled {
+        cursor: default;
+        background-color: lighten($proceed-button-color, 12%);
+      }
     }
     @include mobile {
       padding-left: 0;
@@ -51,6 +83,9 @@
       margin-top: 1rem;
       border: none;
       text-align: center;
+      button {
+        margin: 1rem auto 0 auto;
+      }
     }
   }
 }
