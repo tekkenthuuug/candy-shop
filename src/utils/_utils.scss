@@ -11,7 +11,7 @@ $filters-border-color: #FFC6C7;
 $primary-type: 'Nunito', sans-serif;
 
 // Sizes
-$nav-height: 15vh;
+$nav-height: 145px;
 
 $mobile: 1024px;
 
@@ -29,6 +29,9 @@ $mobile: 1024px;
 
 @mixin pagePadding {
   margin-top: $nav-height;
+  @include mobile {
+    margin-top: 15vh;
+  }
 }
 
 @mixin facebookShadow {

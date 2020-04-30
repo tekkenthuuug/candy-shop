@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useEffect, useRef } from "react";
 
 import useEffectWithTypingTimer from "../../hooks/useEffectWithTimer";
 
@@ -34,14 +33,19 @@ const sortOptions = [
   },
 ];
 
-const Shop = () => {
-  const history = useHistory();
+const Shop = (props) => {
+  const { history } = props;
   const query = new URLSearchParams(history.location.search);
+  const passedSearch = query.get("q");
+
+  const didMount = useRef(false);
 
   const [isRequesting, setRequesting] = useState(true);
 
-  const [searchQuery, setSearchQuery] = useState(query.get("q") || "");
-  const [searchField, setSearchField] = useState(searchQuery);
+  // Gets sent with an API call
+  const [searchQuery, setSearchQuery] = useState(passedSearch || "");
+  // Input state
+  const [searchField, setSearchField] = useState(passedSearch || "");
 
   const [items, setItems] = useState([]);
   const [suggested, setSuggested] = useState(localSearchHistory.get());
@@ -52,26 +56,40 @@ const Shop = () => {
   });
 
   const updateHistory = () => {
-    const params = searchField ? `?q=${searchField}` : "";
-    history.push(`${ROUTES.shop}${params}`);
+    if (!didMount.current) {
+      didMount.current = true;
+      return;
+    }
+    console.log("history update");
+    const searchParams = new URLSearchParams();
+    if (searchQuery) searchParams.append("q", searchQuery);
+    history.push(
+      `${ROUTES.shop}${searchParams && "?" + searchParams.toString()}`
+    );
   };
 
   const fetchItems = () => {
     setRequesting(true);
-    updateHistory();
-    fetchJSON(`${API_BASE_URL}/items?search=${searchField}`, {
+    fetchJSON(`${API_BASE_URL}/items?search=${searchQuery}`, {
       method: "get",
     }).then((data) => {
       setRequesting(false);
       if (data.result) {
         setItems(data.result);
-        localSearchHistory.add(searchField);
+        localSearchHistory.add(searchQuery);
         setSuggested(localSearchHistory.get());
       }
     });
   };
 
+  // Query params effect
   useEffect(() => {
+    setSearchField(passedSearch || "");
+    // eslint-disable-next-line
+  }, [history.location.search]);
+
+  useEffect(() => {
+    updateHistory();
     fetchItems();
     // eslint-disable-next-line
   }, [searchQuery]);

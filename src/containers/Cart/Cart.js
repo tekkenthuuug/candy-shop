@@ -2,15 +2,15 @@ import React, { useState } from "react";
 
 import CartItem from "../../components/CartItem/CartItem";
 
+import fetchJSON from "../../utils/fetchJSON";
 import { useCartState, useCartDispatch } from "../../context/CartContext";
 
-import "./Cart.scss";
-import fetchJSON from "../../utils/fetchJSON";
 import { API_BASE_URL, ROUTES } from "../../utils/constants";
-import { useHistory } from "react-router-dom";
 
-const Cart = () => {
-  const history = useHistory();
+import "./Cart.scss";
+
+const Cart = (props) => {
+  const { history } = props;
 
   const cartState = useCartState();
   const cartDispatch = useCartDispatch();
