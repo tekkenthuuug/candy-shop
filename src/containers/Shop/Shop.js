@@ -60,7 +60,6 @@ const Shop = (props) => {
       didMount.current = true;
       return;
     }
-    console.log("history update");
     const searchParams = new URLSearchParams();
     if (searchQuery) searchParams.append("q", searchQuery);
     history.push(

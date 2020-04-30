@@ -1,26 +1,29 @@
-import React from 'react';
-import { Link, useHistory } from 'react-router-dom';
+import React from "react";
+import { Link, useHistory } from "react-router-dom";
 
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
+import CartSmall from "../CartSmall/CartSmall";
 
-import logo from '../../img/logo.png';
-import { ROUTES } from '../../utils/constants';
+import logo from "../../img/logo.svg";
+import logoText from "../../img/logoText.png";
 
-import './Navigation.scss';
-import CartSmall from '../CartSmall/CartSmall';
+import { ROUTES } from "../../utils/constants";
+
+import "./Navigation.scss";
 
 const Navigation = () => {
   const history = useHistory();
   const { pathname } = history.location;
 
   const isSelected = (route) => {
-    return route === pathname ? 'nav__links-container--selected' : undefined;
+    return route === pathname ? "nav__links-container--selected" : undefined;
   };
 
   return (
     <nav className="nav">
-      <Link to={ROUTES.home} className="nav__logo">
-        <img src={logo} alt="Sugar daddies logo" />
+      <Link to={ROUTES.home} className="nav__logo-container">
+        <img src={logo} alt="Sugar daddies logo" className="nav__logo-img" />
+        <img src={logoText} alt="Logo text" className="nav__logo-text" />
       </Link>
       <BurgerMenu />
       <div className="nav__links-container">
