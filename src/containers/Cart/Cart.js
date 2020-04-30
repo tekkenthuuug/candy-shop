@@ -6,9 +6,12 @@ import { useCartState, useCartDispatch } from "../../context/CartContext";
 
 import "./Cart.scss";
 import fetchJSON from "../../utils/fetchJSON";
-import { API_BASE_URL } from "../../utils/constants";
+import { API_BASE_URL, ROUTES } from "../../utils/constants";
+import { useHistory } from "react-router-dom";
 
 const Cart = () => {
+  const history = useHistory();
+
   const cartState = useCartState();
   const cartDispatch = useCartDispatch();
   const cartItems = Object.values(cartState);
@@ -47,6 +50,11 @@ const Cart = () => {
           email,
           items: convertedItems,
         }),
+      }).then((data) => {
+        if (data.id) {
+          cartDispatch({ type: "CLEAR_CART" });
+          history.push(`${ROUTES.order}/${data.id}`);
+        }
       });
     }
   };

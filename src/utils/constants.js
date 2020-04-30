@@ -8,6 +8,7 @@ export const ROUTES = {
   home: "/",
   shop: "/shop",
   cart: "/cart",
+  order: "/order",
   item: "/shop/item",
 };
 
