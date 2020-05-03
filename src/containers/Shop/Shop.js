@@ -1,13 +1,12 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useReducer } from "react";
 
-import useEffectWithTypingTimer from "../../hooks/useEffectWithTimer";
+import useEffectWithTimer from "../../hooks/useEffectWithTimer";
 
 import GoUp from "../../components/GoUp/GoUp";
 import DropdownSort from "../../components/DropdownSort/DropdownSort";
 import SearchField from "../../components/SearchField/SearchField";
 import ItemCards from "../../components/ItemCards/ItemCards";
 import Filters from "../../components/Filters/Filters";
-import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
 
 import fetchJSON from "../../utils/fetchJSON";
 import localSearchHistory from "../../utils/localSearchHistory";
@@ -15,6 +14,7 @@ import localSearchHistory from "../../utils/localSearchHistory";
 import { ROUTES, API_BASE_URL } from "../../utils/constants";
 
 import "./Shop.scss";
+import filtersReducer from "../../reducers/FiltersReducer";
 
 const sortOptions = [
   {
@@ -36,7 +36,7 @@ const sortOptions = [
 const Shop = (props) => {
   const { history } = props;
   const query = new URLSearchParams(history.location.search);
-  const passedSearch = query.get("q");
+  const passedSearch = query.get("search");
 
   const didMount = useRef(false);
 
@@ -47,6 +47,8 @@ const Shop = (props) => {
   // Input state
   const [searchField, setSearchField] = useState(passedSearch || "");
 
+  const [filters, dispatchFilters] = useReducer(filtersReducer, []);
+
   const [items, setItems] = useState([]);
   const [suggested, setSuggested] = useState(localSearchHistory.get());
 
@@ -55,45 +57,57 @@ const Shop = (props) => {
     desc: true,
   });
 
-  const updateHistory = () => {
-    if (!didMount.current) {
-      didMount.current = true;
-      return;
-    }
+  const createSearchParams = () => {
     const searchParams = new URLSearchParams();
-    if (searchQuery) searchParams.append("q", searchQuery);
-    history.push(
-      `${ROUTES.shop}${searchParams && "?" + searchParams.toString()}`
-    );
+    if (searchQuery) searchParams.append("search", searchQuery);
+    if (filters.length) searchParams.append("filter", filters.join(";"));
+    return searchParams;
   };
 
-  const fetchItems = () => {
+  /** searchParams - URLSearchParams class */
+  const pushToHistoryWithParams = (route, searchParams) => {
+    history.push(`${route}${"?" + searchParams.toString()}`);
+  };
+
+  const fetchItems = async () => {
     setRequesting(true);
-    fetchJSON(`${API_BASE_URL}/items?search=${searchQuery}`, {
-      method: "get",
-    }).then((data) => {
-      setRequesting(false);
-      if (data.result) {
-        setItems(data.result);
-        localSearchHistory.add(searchQuery);
-        setSuggested(localSearchHistory.get());
+
+    localSearchHistory.add(searchQuery);
+    setSuggested(localSearchHistory.get());
+
+    const searchParams = createSearchParams();
+    const data = await fetchJSON(
+      `${API_BASE_URL}/items${"?" + searchParams.toString()}`,
+      {
+        method: "get",
       }
-    });
+    );
+    console.log(data.result);
+    if (data.result) {
+      setItems(data.result);
+    }
+
+    setRequesting(false);
   };
 
   // Query params effect
   useEffect(() => {
+    setRequesting(true);
     setSearchField(passedSearch || "");
     // eslint-disable-next-line
   }, [history.location.search]);
 
   useEffect(() => {
-    updateHistory();
+    if (!didMount.current) {
+      didMount.current = true;
+    } else {
+      pushToHistoryWithParams(ROUTES.shop, createSearchParams());
+    }
     fetchItems();
     // eslint-disable-next-line
-  }, [searchQuery]);
+  }, [searchQuery, filters]);
 
-  useEffectWithTypingTimer(
+  useEffectWithTimer(
     () => {
       setSearchQuery(searchField);
     },
@@ -104,7 +118,7 @@ const Shop = (props) => {
   return (
     <div className="page-container shop">
       <GoUp />
-      <Filters />
+      <Filters dispatchFilters={dispatchFilters} />
       <div className="shop__search-section">
         <div className="shop__search-wrapper">
           <SearchField
@@ -120,11 +134,7 @@ const Shop = (props) => {
             }
           />
         </div>
-        {isRequesting ? (
-          <LoadingSpinner />
-        ) : (
-          <ItemCards items={items} sort={sort} />
-        )}
+        <ItemCards items={items} sort={sort} isRequesting={isRequesting} />
       </div>
     </div>
   );

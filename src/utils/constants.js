@@ -12,4 +12,7 @@ export const ROUTES = {
   item: "/shop/item",
 };
 
-export const FILTERS = [["Chocolate", "Caramel"], ["Lactose free"]];
+export const FILTERS = [
+  ["Chocolate", "Caramel", "Coconut", "Peanut", "Sour"],
+  ["Lactose free"],
+];

@@ -28,7 +28,7 @@ const Homepage = (props) => {
   const [searchField, setSearchField] = useState("");
 
   const redirectToShop = () => {
-    history.push(`${ROUTES.shop}?q=${searchField}`);
+    history.push(`${ROUTES.shop}?search=${searchField}`);
   };
 
   return (

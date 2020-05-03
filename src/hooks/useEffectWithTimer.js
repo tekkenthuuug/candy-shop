@@ -1,19 +1,19 @@
-import { useState, useEffect } from "react"
+import { useState, useEffect } from "react";
 
-const useEffectWithTypingTimer = (callback, timer, dependency) => {
-  const [typingTimer, setTypingTimer] = useState();
+const useEffectWithTimer = (callback, delay, dependency) => {
+  const [timer, setTimer] = useState();
   useEffect(() => {
-    if (typingTimer) clearTimeout(typingTimer)
-    setTypingTimer(
+    if (timer) clearTimeout(timer);
+    setTimer(
       setTimeout(() => {
         callback();
-      }, timer)
-    )
+      }, delay)
+    );
     return () => {
-      clearTimeout(typingTimer);
-    }
+      clearTimeout(timer);
+    };
     // eslint-disable-next-line
-  }, [dependency])
-}
+  }, [dependency]);
+};
 
-export default useEffectWithTypingTimer;
+export default useEffectWithTimer;
