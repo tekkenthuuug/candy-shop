@@ -13,6 +13,6 @@ export const ROUTES = {
 };
 
 export const FILTERS = [
-  ["Chocolate", "Caramel", "Coconut", "Peanut", "Sour"],
+  ["Chocolate", "Caramel", "Nougat", "Coconut", "Peanut", "Sour"],
   ["Lactose free"],
 ];

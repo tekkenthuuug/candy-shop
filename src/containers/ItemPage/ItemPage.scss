@@ -31,7 +31,9 @@
   }
   &__info {
     margin-left: 5%;
+    max-width: 50%;
     @include mobile {
+      max-width: 80%;
       margin-left: 0;
       padding: 1rem;
     }

@@ -82,7 +82,6 @@ const Shop = (props) => {
         method: "get",
       }
     );
-    console.log(data.result);
     if (data.result) {
       setItems(data.result);
     }

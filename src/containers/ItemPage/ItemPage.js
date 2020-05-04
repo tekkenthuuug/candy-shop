@@ -1,23 +1,36 @@
 import React, { useState, useEffect } from "react";
 
+import AddToCartButton from "../../components/AddToCartButton/AddToCartButton";
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+
 import fetchJSON from "../../utils/fetchJSON";
 import { API_BASE_URL } from "../../utils/constants";
 
 import "./ItemPage.scss";
-import AddToCartButton from "../../components/AddToCartButton/AddToCartButton";
 
 const ItemPage = (props) => {
   const [item, setItem] = useState({});
+  const [isRequesting, setRequesting] = useState(false);
 
   useEffect(() => {
-    fetchJSON(`${API_BASE_URL}/items/${props.match.params.id}`, {
+    setRequesting(true);
+    fetchJSON(`${API_BASE_URL}/items/${props.match.params.id}?include=tags`, {
       method: "get",
     }).then((data) => {
-      if (data.result[0].name) {
+      setRequesting(false);
+      if (data.result[0].id) {
         setItem(data.result[0]);
       }
     });
   }, [props.match.params.id]);
+
+  if (isRequesting) {
+    return (
+      <div className="page-container item-page">
+        <LoadingSpinner />
+      </div>
+    );
+  }
 
   return (
     <div className="page-container item-page">
