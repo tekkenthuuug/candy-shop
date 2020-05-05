@@ -1,7 +1,7 @@
 @import "../../utils/utils";
 
 .item-page {
-  padding: 1rem 20%;
+  padding: 1rem 15%;
   background-color: $primary-bg-color;
   @include mobile {
     padding: 1rem 0;
@@ -41,7 +41,7 @@
   h2 {
     font-size: 2rem;
   }
-  &__id {
+  &__id, &__tags {
     color: grey;
   }
   &__description {

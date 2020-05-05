@@ -47,7 +47,7 @@ const Cart = (props) => {
           "Content-type": "application/json",
         },
         body: JSON.stringify({
-          email,
+          mail: email,
           items: convertedItems,
         }),
       }).then((data) => {

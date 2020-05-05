@@ -10,16 +10,15 @@ import "./ItemPage.scss";
 
 const ItemPage = (props) => {
   const [item, setItem] = useState({});
-  const [isRequesting, setRequesting] = useState(false);
+  const [isRequesting, setRequesting] = useState(true);
 
   useEffect(() => {
-    setRequesting(true);
     fetchJSON(`${API_BASE_URL}/items/${props.match.params.id}?include=tags`, {
       method: "get",
     }).then((data) => {
-      setRequesting(false);
       if (data.result[0].id) {
         setItem(data.result[0]);
+        setRequesting(false);
       }
     });
   }, [props.match.params.id]);
@@ -40,6 +39,7 @@ const ItemPage = (props) => {
         </div>
         <div className="item-page__info">
           <h2>{item.name}</h2>
+          <p className="item-page__tags">{item.tags.join(" ")}</p>
           <p className="item-page__id">Product ID: {item.id}</p>
           <p className="item-page__description">{item.description}</p>
           <div className="item-page__add-wrapper">
