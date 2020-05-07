@@ -39,6 +39,11 @@ const Navigation = () => {
             </Link>
           </li>
           <li>
+            <Link to={ROUTES.login} className={isSelected(ROUTES.login)}>
+              Login
+            </Link>
+          </li>
+          <li>
             <CartSmall />
           </li>
         </ul>

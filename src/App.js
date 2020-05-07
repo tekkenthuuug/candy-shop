@@ -8,6 +8,7 @@ import Cart from "./containers/Cart/Cart";
 import Order from "./containers/Order/Order";
 import ItemPage from "./containers/ItemPage/ItemPage";
 import Footer from "./components/Footer/Footer";
+import Login from "./containers/Login/Login";
 
 import { ROUTES } from "./utils/constants";
 
@@ -22,6 +23,7 @@ function App() {
         <Navigation />
         <Route exact path={ROUTES.shop} component={Shop} />
         <Route exact path={`${ROUTES.item}/:id`} component={ItemPage} />
+        <Route exact path={ROUTES.login} component={Login} />
         <Route path={ROUTES.cart} component={Cart} />
       </CartProvider>
       <Route exact path={ROUTES.home} component={Homepage} />
