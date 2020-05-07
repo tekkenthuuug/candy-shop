@@ -1,31 +1,37 @@
 import React, { useState } from "react";
+
 import fetchJSON from "../../utils/fetchJSON";
-import { API_BASE_URL, ROUTES } from "../../utils/constants";
+
 import useLoginForm from "../../hooks/useLoginForm";
+
+import { API_BASE_URL, ROUTES } from "../../utils/constants";
 
 import "./Login.scss";
 
 const Login = (props) => {
-  const login = () =>
+  const onSubmit = () => {
     fetchJSON(`${API_BASE_URL}/login`, {
       method: "post",
       headers: {
         "Content-type": "application/json",
       },
       body: JSON.stringify({
-        username: inputs.username,
-        password: inputs.password,
+        ...values,
       }),
-    }).then((response) => {
-      if (response.token) {
-        localStorage.setItem("token", response.token);
-        props.history.push(ROUTES.shop)
+    }).then((res) => {
+      const { token, message } = res;
+      if (token) {
+        localStorage.setItem("token", token);
+        props.history.push(ROUTES.shop);
       } else {
-        setMessage(response.message);
+        setErrorMessage(message);
       }
     });
-  const { inputs, handleSubmit, handleInputChange } = useLoginForm(login);
-  const [message, setMessage] = useState("");
+  };
+
+  const { values, handleSubmit, handleInputChange } = useLoginForm(onSubmit);
+  const [errorMessage, setErrorMessage] = useState("");
+
   return (
     <div className="page-container login-page">
       <form className="login-form" onSubmit={handleSubmit}>
@@ -35,7 +41,7 @@ const Login = (props) => {
           name="username"
           type="text"
           onChange={handleInputChange}
-          value={inputs.username}
+          value={values.username}
         />
 
         <label htmlFor="password">Enter your password</label>
@@ -44,17 +50,11 @@ const Login = (props) => {
           name="password"
           type="password"
           onChange={handleInputChange}
-          value={inputs.password}
+          value={values.password}
         />
 
-        <button
-          disabled={
-            inputs.username === undefined || inputs.password === undefined
-          }
-        >
-          Login
-        </button>
-        <div>{message}</div>
+        <button disabled={!values.username || !values.password}>Login</button>
+        <div>{errorMessage}</div>
       </form>
     </div>
   );

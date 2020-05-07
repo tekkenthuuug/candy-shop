@@ -1,10 +1,10 @@
 const get = () => {
-    return JSON.parse(localStorage.getItem("cart"));
-}
+  return JSON.parse(localStorage.getItem("cart"));
+};
 
 const set = (state) => {
   localStorage.setItem("cart", JSON.stringify(state));
-}
+};
 
 const addItem = (itemId) => {
   const newLocalStorageCart = get();
@@ -14,25 +14,24 @@ const addItem = (itemId) => {
     newLocalStorageCart[itemId] = 1;
   }
   set(newLocalStorageCart);
-} 
+};
 
 const removeItem = (itemId) => {
   const newLocalStorageCart = get();
   delete newLocalStorageCart[itemId];
   set(newLocalStorageCart);
-}
+};
 
 const setItemQuantity = (targetId, quantity) => {
   const newLocalStorageCart = get();
   newLocalStorageCart[targetId] = quantity;
-  set(newLocalStorageCart)
-}
-
+  set(newLocalStorageCart);
+};
 
 export default {
   get,
   set,
   addItem,
   removeItem,
-  setItemQuantity
-}
+  setItemQuantity,
+};

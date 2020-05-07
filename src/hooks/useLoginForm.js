@@ -1,26 +1,26 @@
 import { useState } from "react";
 
-const useLoginForm = (callback) => {
-  const [inputs, setInputs] = useState({});
+const useLoginForm = (onSubmit) => {
+  const [values, setValues] = useState({});
 
   const handleSubmit = (event) => {
     if (event) {
       event.preventDefault();
     }
-    callback();
+    onSubmit();
   };
 
   const handleInputChange = (event) => {
     event.persist();
-    setInputs((inputs) => ({
-      ...inputs,
+    setValues((values) => ({
+      ...values,
       [event.target.name]: event.target.value,
     }));
   };
   return {
     handleSubmit,
     handleInputChange,
-    inputs,
+    values,
   };
 };
 export default useLoginForm;

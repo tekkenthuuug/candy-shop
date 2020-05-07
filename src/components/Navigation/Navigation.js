@@ -7,7 +7,7 @@ import CartSmall from "../CartSmall/CartSmall";
 import logo from "../../img/logo.svg";
 import logoText from "../../img/logoText.png";
 
-import { ROUTES } from "../../utils/constants";
+import { ROUTES, NAV_LINKS } from "../../utils/constants";
 
 import "./Navigation.scss";
 
@@ -28,21 +28,15 @@ const Navigation = () => {
       <BurgerMenu />
       <div className="nav__links-container">
         <ul>
-          <li>
-            <Link to={ROUTES.home} className={isSelected(ROUTES.home)}>
-              Home
-            </Link>
-          </li>
-          <li>
-            <Link to={ROUTES.shop} className={isSelected(ROUTES.shop)}>
-              Shop
-            </Link>
-          </li>
-          <li>
-            <Link to={ROUTES.login} className={isSelected(ROUTES.login)}>
-              Login
-            </Link>
-          </li>
+          {NAV_LINKS.map((link) => {
+            return (
+              <li key={link.route}>
+                <Link to={link.route} className={isSelected(link.route)}>
+                  {link.name}
+                </Link>
+              </li>
+            );
+          })}
           <li>
             <CartSmall />
           </li>

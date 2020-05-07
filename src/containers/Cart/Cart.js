@@ -2,7 +2,9 @@ import React, { useState, useEffect } from "react";
 
 import CartItem from "../../components/CartItem/CartItem";
 
+import { checkTokenValidity } from "../../utils/localToken";
 import fetchJSON from "../../utils/fetchJSON";
+import validateEmail from "../../utils/validateEmail";
 import { useCartState, useCartDispatch } from "../../context/CartContext";
 
 import { API_BASE_URL, ROUTES } from "../../utils/constants";
@@ -25,32 +27,18 @@ const Cart = (props) => {
     return acc + item.price * item.quantity;
   }, 0);
 
-  const isAuthenticated = () => {
-    const token = localStorage.getItem("token");
-    if (token === null || token === "") {
-      setAuthenticated(false);
-    } else {
-      fetchJSON(`${API_BASE_URL}/user`, {
-        method: "get",
-        headers: { Authorization: token },
-      }).then((data) => {
-        if (data["message"] === undefined) {
-          setEmail(data["email"]);
-          setAuthenticated(true);
-          setUser(data["id"]);
-        }
-      });
-    }
-  };
-
   useEffect(() => {
-    isAuthenticated();
+    checkTokenValidity(
+      ({ message, email, id }) => {
+        setEmail(email);
+        setAuthenticated(true);
+        setUser(id);
+      },
+      () => {
+        setAuthenticated(false);
+      }
+    );
   }, []);
-
-  const validateEmail = (email) => {
-    let re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(email);
-  };
 
   const handleSendOrder = () => {
     if (!validateEmail(email)) {
@@ -84,7 +72,7 @@ const Cart = (props) => {
     }
   };
 
-  const handleChangeEmail = (e) => {
+  const onEmailChange = (e) => {
     setEmailError("");
     setEmail(e.target.value);
   };
@@ -106,16 +94,22 @@ const Cart = (props) => {
       <div className="cart-page__side">
         <h4>Total:</h4>
         <p>{total.toFixed(2)}$</p>
-        {authenticated ? null : (
-          <div className="cart-page__email">
-            <label htmlFor="email">Email:</label>
-            <div>
-              <input type="email" name="email" onChange={handleChangeEmail} />
-            </div>
-            {emailError && <p>{emailError}</p>}
+        <div className="cart-page__email">
+          <label htmlFor="email">Email:</label>
+          <div>
+            <input
+              type="email"
+              name="email"
+              onChange={onEmailChange}
+              value={email}
+              disabled={authenticated}
+            />
           </div>
-        )}
-        <button onClick={handleSendOrder} disabled={email.length === 0}>Order</button>
+          {emailError && <p>{emailError}</p>}
+        </div>
+        <button onClick={handleSendOrder} disabled={!email.length}>
+          Order
+        </button>
       </div>
     </div>
   );

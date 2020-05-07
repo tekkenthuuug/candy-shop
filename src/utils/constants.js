@@ -10,8 +10,23 @@ export const ROUTES = {
   cart: "/cart",
   order: "/order",
   item: "/shop/item",
-  login: "/login"
+  login: "/login",
 };
+
+export const NAV_LINKS = [
+  {
+    route: ROUTES.home,
+    name: "Home",
+  },
+  {
+    route: ROUTES.shop,
+    name: "Shop",
+  },
+  {
+    route: ROUTES.login,
+    name: "Login",
+  },
+];
 
 export const FILTERS = [
   ["Chocolate", "Caramel", "Nougat", "Coconut", "Peanut", "Sour"],
