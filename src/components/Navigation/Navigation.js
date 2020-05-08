@@ -39,6 +39,11 @@ const Navigation = () => {
             </Link>
           </li>
           <li>
+            <Link to={ROUTES.profile} className={isSelected(ROUTES.profile)}>
+              Profile
+            </Link>
+          </li>
+          <li>
             <Link to={ROUTES.login} className={isSelected(ROUTES.login)}>
               Login
             </Link>

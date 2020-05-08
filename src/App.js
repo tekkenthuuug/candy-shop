@@ -9,6 +9,7 @@ import Order from "./containers/Order/Order";
 import ItemPage from "./containers/ItemPage/ItemPage";
 import Footer from "./components/Footer/Footer";
 import Login from "./containers/Login/Login";
+import Profile from "./containers/Profile/Profile";
 
 import { ROUTES } from "./utils/constants";
 
@@ -28,6 +29,7 @@ function App() {
       </CartProvider>
       <Route exact path={ROUTES.home} component={Homepage} />
       <Route exact path={`${ROUTES.order}/:id`} component={Order} />
+      <Route exact path={ROUTES.profile} component={Profile} />
       <Footer />
     </Router>
   );

@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useLoginForm = (callback) => {
+const useForm = (callback) => {
   const [inputs, setInputs] = useState({});
 
   const handleSubmit = (event) => {
@@ -23,4 +23,4 @@ const useLoginForm = (callback) => {
     inputs,
   };
 };
-export default useLoginForm;
+export default useForm;

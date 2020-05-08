@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import fetchJSON from "../../utils/fetchJSON";
 import { API_BASE_URL, ROUTES } from "../../utils/constants";
-import useLoginForm from "../../hooks/useLoginForm";
+import useForm from "../../hooks/useForm";
 
 import "./Login.scss";
 
@@ -24,7 +24,7 @@ const Login = (props) => {
         setMessage(response.message);
       }
     });
-  const { inputs, handleSubmit, handleInputChange } = useLoginForm(login);
+  const { inputs, handleSubmit, handleInputChange } = useForm(login);
   const [message, setMessage] = useState("");
   return (
     <div className="page-container login-page">

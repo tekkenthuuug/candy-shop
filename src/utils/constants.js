@@ -10,7 +10,8 @@ export const ROUTES = {
   cart: "/cart",
   order: "/order",
   item: "/shop/item",
-  login: "/login"
+  login: "/login",
+  profile: "/profile"
 };
 
 export const FILTERS = [
