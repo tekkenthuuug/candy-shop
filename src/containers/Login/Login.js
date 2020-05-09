@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import fetchJSON from "../../utils/fetchJSON";
 
-import useLoginForm from "../../hooks/useLoginForm";
+import useForm from "../../hooks/useForm";
 
 import { API_BASE_URL, ROUTES } from "../../utils/constants";
 
@@ -29,7 +29,7 @@ const Login = (props) => {
     });
   };
 
-  const { values, handleSubmit, handleInputChange } = useLoginForm(onSubmit);
+  const { values, handleSubmit, handleInputChange } = useForm(onSubmit);
   const [errorMessage, setErrorMessage] = useState("");
 
   return (
