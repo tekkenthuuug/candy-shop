@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-const useLoginForm = (onSubmit) => {
+const useForm = (onSubmit) => {
   const [values, setValues] = useState({});
 
   const handleSubmit = (event) => {
@@ -23,4 +23,4 @@ const useLoginForm = (onSubmit) => {
     values,
   };
 };
-export default useLoginForm;
+export default useForm;
