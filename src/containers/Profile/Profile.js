@@ -16,7 +16,7 @@ const Profile = (props) => {
     const token = localToken.get();
     fetchJSON(`${API_BASE_URL}/profile`, {
       method: "GET",
-      headers: { Authorization: token },
+      headers: { Authorization: "Bearer " + token },
     }).then((data) => {
       if (data.message) {
         props.history.push(ROUTES.login);

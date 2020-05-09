@@ -29,7 +29,7 @@ const Cart = (props) => {
 
   useEffect(() => {
     localToken.checkTokenValidity(
-      ({ message, email, id }) => {
+      ({ email, id }) => {
         setEmail(email);
         setAuthenticated(true);
         setUser(id);

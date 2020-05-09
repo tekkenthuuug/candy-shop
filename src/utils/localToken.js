@@ -13,11 +13,11 @@ const set = (token) => {
 const checkTokenValidity = (successCallback, errorCallback) => {
   const token = get();
   if (!token) {
-    errorCallback("Token is not defined");
+    errorCallback("There is no token in local storage");
   } else {
     fetchJSON(`${API_BASE_URL}/user`, {
       method: "get",
-      headers: { Authorization: token },
+      headers: { Authorization: "Bearer " + token },
     }).then((data) => {
       if (!data.message) {
         successCallback(data);
