@@ -3,6 +3,7 @@ import { Link, useHistory } from "react-router-dom";
 
 import BurgerMenu from "../BurgerMenu/BurgerMenu";
 import CartSmall from "../CartSmall/CartSmall";
+import Account from "../Account/Account";
 
 import logo from "../../img/logo.svg";
 import logoText from "../../img/logoText.png";
@@ -37,6 +38,9 @@ const Navigation = () => {
               </li>
             );
           })}
+          <li>
+            <Account history={history} />
+          </li>
           <li>
             <CartSmall />
           </li>

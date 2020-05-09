@@ -1,5 +1,11 @@
 import React, { useEffect, useState } from "react";
+
+import LoadingSpinner from "../../components/LoadingSpinner/LoadingSpinner";
+import ProfileOrders from "../../components/ProfileOrders/ProfileOrders";
+
+import localToken from "../../utils/localToken";
 import fetchJSON from "../../utils/fetchJSON";
+
 import { API_BASE_URL, ROUTES } from "../../utils/constants";
 import "./Profile.scss";
 
@@ -7,66 +13,33 @@ const Profile = (props) => {
   const [profileInfo, setProfileInfo] = useState({});
 
   useEffect(() => {
-    const token = localStorage.getItem("token");
+    const token = localToken.get();
     fetchJSON(`${API_BASE_URL}/profile`, {
       method: "GET",
       headers: { Authorization: token },
     }).then((data) => {
-      if (data["message"]) {
+      if (data.message) {
         props.history.push(ROUTES.login);
+      } else {
+        setProfileInfo(data);
       }
-      setProfileInfo(data);
     });
   }, [props.history]);
 
-  const orders = !profileInfo.orders ? (
-    <p>There is no any purchases yet</p>
-  ) : (
-    profileInfo.orders.map((order) => {
-      const items = order.items.map((item) => {
-        return (
-          <tr>
-            <td>{item.name}</td>
-            <td>{item.price}</td>
-            <td>{item.quantity}</td>
-          </tr>
-        );
-      });
-      return (
-        <div className="order">
-          <div className="order-info bold">
-            <div>Order ID: {order.id}</div>
-            <div>
-              Purchased:{" "}
-              {new Intl.DateTimeFormat("en-GB", {
-                year: "numeric",
-                month: "long",
-                day: "2-digit",
-                hour: "numeric",
-                minute: "numeric",
-              }).format(new Date(order.created_at))}
-            </div>
-          </div>
-          <table>
-            <thead>
-              <tr>
-                <th>Name</th>
-                <th>Price</th>
-                <th>Quantity</th>
-              </tr>
-            </thead>
-            <tbody>{items}</tbody>
-          </table>
-        </div>
-      );
-    })
-  );
+  if (!profileInfo.id) {
+    return (
+      <div className="page-container profile-page flex">
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
   return (
     <div className="page-container profile-page">
-      <div className="profile-password"></div>
       <div className="profile-history">
-        <h2>Your orders history</h2>
-        {orders}
+        {profileInfo.orders.length && (
+          <ProfileOrders orders={profileInfo.orders} />
+        )}
       </div>
     </div>
   );

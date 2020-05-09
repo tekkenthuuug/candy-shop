@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 
 import CartItem from "../../components/CartItem/CartItem";
 
-import { checkTokenValidity } from "../../utils/localToken";
+import localToken from "../../utils/localToken";
 import fetchJSON from "../../utils/fetchJSON";
 import validateEmail from "../../utils/validateEmail";
 import { useCartState, useCartDispatch } from "../../context/CartContext";
@@ -28,7 +28,7 @@ const Cart = (props) => {
   }, 0);
 
   useEffect(() => {
-    checkTokenValidity(
+    localToken.checkTokenValidity(
       ({ message, email, id }) => {
         setEmail(email);
         setAuthenticated(true);

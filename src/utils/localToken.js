@@ -28,4 +28,4 @@ const checkTokenValidity = (successCallback, errorCallback) => {
   }
 };
 
-export { get, set, checkTokenValidity };
+export default { get, set, checkTokenValidity };

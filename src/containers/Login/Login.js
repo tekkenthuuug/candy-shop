@@ -22,7 +22,7 @@ const Login = (props) => {
       const { token, message } = res;
       if (token) {
         localStorage.setItem("token", token);
-        props.history.push(ROUTES.shop);
+        props.history.push(ROUTES.profile);
       } else {
         setErrorMessage(message);
       }
@@ -41,7 +41,7 @@ const Login = (props) => {
           name="username"
           type="text"
           onChange={handleInputChange}
-          value={values.username}
+          value={values.username || ""}
         />
 
         <label htmlFor="password">Enter your password</label>
@@ -50,7 +50,7 @@ const Login = (props) => {
           name="password"
           type="password"
           onChange={handleInputChange}
-          value={values.password}
+          value={values.password || ""}
         />
 
         <button disabled={!values.username || !values.password}>Login</button>

@@ -11,7 +11,7 @@ export const ROUTES = {
   order: "/order",
   item: "/shop/item",
   login: "/login",
-  profile: "/profile"
+  profile: "/profile",
 };
 
 export const NAV_LINKS = [
@@ -23,14 +23,6 @@ export const NAV_LINKS = [
     route: ROUTES.shop,
     name: "Shop",
   },
-  {
-    route: ROUTES.login,
-    name: "Login",
-  },
-  {
-    route: ROUTES.profile,
-    name: "Profile"
-  }
 ];
 
 export const FILTERS = [

@@ -1,0 +1,13 @@
+@import "../../utils/utils";
+
+th {
+  background-color: darken($primary-bg-color, 3%);
+  border: 2px solid $filters-border-color;
+  padding: 12px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  text-align: center;
+}
