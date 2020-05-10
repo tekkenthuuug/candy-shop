@@ -10,6 +10,10 @@ const set = (token) => {
   localStorage.setItem("token", token);
 };
 
+const remove = () => {
+  localStorage.removeItem("token");
+};
+
 const checkTokenValidity = (successCallback, errorCallback) => {
   const token = get();
   if (!token) {
@@ -28,4 +32,4 @@ const checkTokenValidity = (successCallback, errorCallback) => {
   }
 };
 
-export default { get, set, checkTokenValidity };
+export default { get, set, remove, checkTokenValidity };

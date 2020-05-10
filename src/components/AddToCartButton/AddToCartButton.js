@@ -13,7 +13,7 @@ const AddToCartButton = ({ callback, item }) => {
   };
 
   return (
-    <button className="add-to-cart-btn" onClick={handleAddToCart}>
+    <button className="add-to-cart-btn primary-btn" onClick={handleAddToCart}>
       Add to cart
     </button>
   );

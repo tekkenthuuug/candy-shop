@@ -8,6 +8,7 @@ import fetchJSON from "../../utils/fetchJSON";
 
 import { API_BASE_URL, ROUTES } from "../../utils/constants";
 import "./Profile.scss";
+import SignOut from "../../components/SignOut/SignOut";
 
 const Profile = (props) => {
   const [profileInfo, setProfileInfo] = useState({});
@@ -37,9 +38,10 @@ const Profile = (props) => {
   return (
     <div className="page-container profile-page">
       <div className="profile-history">
-        {profileInfo.orders.length && (
-          <ProfileOrders orders={profileInfo.orders} />
-        )}
+        <div className="sign-out-wrapper">
+          <SignOut history={props.history} />
+        </div>
+        <ProfileOrders orders={profileInfo.orders} />
       </div>
     </div>
   );

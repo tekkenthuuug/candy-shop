@@ -10,6 +10,12 @@
   flex-direction: column;
   margin: auto;
   align-items: center;
-  width: 70%;
+  width: 60%;
+  @include mobile {
+    width: 90%;
+  }
 }
 
+.sign-out-wrapper {
+  width: 100%;
+}

@@ -62,3 +62,9 @@ button {
 .flex {
   display: flex;
 }
+
+.primary-btn {
+  background-color: $button-color;
+  color: $button-text;
+  font-family: $primary-type;
+}

@@ -11,6 +11,7 @@ export const ROUTES = {
   order: "/order",
   item: "/shop/item",
   login: "/login",
+  register: "/register",
   profile: "/profile",
 };
 
