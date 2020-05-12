@@ -27,6 +27,16 @@ export const NAV_LINKS = [
 ];
 
 export const FILTERS = [
-  ["Chocolate", "Caramel", "Nougat", "Coconut", "Peanut", "Sour"],
+  [
+    "Chocolate",
+    "Caramel",
+    "Nougat",
+    "Coconut",
+    "Peanut",
+    "Sour",
+    "Present Box",
+    "Waffles",
+    "Marmalade",
+  ],
   ["Lactose free"],
 ];
